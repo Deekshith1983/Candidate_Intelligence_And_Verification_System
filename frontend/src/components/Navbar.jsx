@@ -14,8 +14,8 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="bg-primary-navy border-b border-slate-300 sticky top-0 z-50 shadow-soft w-full" style={{ backgroundColor: 'var(--color-navbar-bg)', borderBottomColor: 'var(--color-border)' }}>
-      <div className="container">
+    <nav className="bg-primary-navy border-b border-slate-300 sticky top-0 z-50 shadow-soft" style={{ backgroundColor: 'var(--color-navbar-bg)', borderBottomColor: 'var(--color-border)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-20 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="text-heading-3 font-bold flex-shrink-0" style={{ color: 'var(--color-navbar-text)' }}>
