@@ -578,7 +578,7 @@ const ProfilePageNew = () => {
                   <button
                     onClick={handleShareProfile}
                     disabled={shareLoading}
-                    className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 disabled:opacity-50 font-semibold transition-colors"
+                    className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 disabled:bg-slate-400 disabled:cursor-not-allowed font-semibold transition-colors"
                   >
                     {shareLoading ? 'Sharing...' : '🔗 Share'}
                   </button>
@@ -600,7 +600,7 @@ const ProfilePageNew = () => {
             <button
               onClick={handleVerifyGithub}
               disabled={verifying}
-              className="ml-4 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+              className="ml-4 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 disabled:bg-slate-400 disabled:cursor-not-allowed whitespace-nowrap"
             >
               {verifying ? 'Verifying...' : 'Verify GitHub'}
             </button>
@@ -627,7 +627,7 @@ const ProfilePageNew = () => {
                 activeTab === 'resume'
                   ? 'border-primary-dark text-primary-dark'
                   : 'border-transparent text-slate-600 hover:text-primary-dark'
-              } ${!canAccessRestrictedFeatures ? 'opacity-50 cursor-not-allowed' : ''}`}
+              } ${!canAccessRestrictedFeatures ? 'text-slate-400 cursor-not-allowed hover:text-slate-400' : ''}`}
             >
               Resume + ATS score {!canAccessRestrictedFeatures && '🔒'}
             </button>
@@ -638,7 +638,7 @@ const ProfilePageNew = () => {
                 activeTab === 'projects'
                   ? 'border-primary-dark text-primary-dark'
                   : 'border-transparent text-slate-600 hover:text-primary-dark'
-              } ${!canAccessRestrictedFeatures ? 'opacity-50 cursor-not-allowed' : ''}`}
+              } ${!canAccessRestrictedFeatures ? 'text-slate-400 cursor-not-allowed hover:text-slate-400' : ''}`}
             >
               Projects {!canAccessRestrictedFeatures && '🔒'}
             </button>
@@ -859,7 +859,7 @@ const ProfilePageNew = () => {
                       <button
                         onClick={() => handleDeleteProject(project._id)}
                         disabled={verifying}
-                        className="text-red-600 hover:text-red-700 text-sm font-medium disabled:opacity-50"
+                        className="text-red-600 hover:text-red-700 text-sm font-medium disabled:text-red-300 disabled:cursor-not-allowed"
                       >
                         Delete
                       </button>
@@ -881,7 +881,7 @@ const ProfilePageNew = () => {
               <h2 className="text-2xl font-bold text-primary-dark">Edit Profile</h2>
               <button
                 onClick={() => setShowEditModal(false)}
-                className="text-slate-500 hover:text-slate-700 text-2xl"
+                className="text-slate-500 hover:text-slate-700 text-2xl font-bold"
               >
                 ✕
               </button>
@@ -1015,14 +1015,14 @@ const ProfilePageNew = () => {
             <div className="sticky bottom-0 bg-white border-t border-slate-200 p-6 flex justify-end gap-4">
               <button
                 onClick={() => setShowEditModal(false)}
-                className="px-6 py-2 border border-slate-200 rounded-lg hover:bg-slate-50"
+                className="px-6 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 font-semibold"
               >
                 Cancel
               </button>
               <button
                 onClick={handleSaveProfile}
                 disabled={verifying}
-                className="px-6 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 disabled:opacity-50"
+                className="px-6 py-2 bg-primary-teal text-white font-semibold rounded-lg hover:bg-teal-700 disabled:bg-slate-400 disabled:text-slate-700 disabled:cursor-not-allowed"
               >
                 {verifying ? 'Saving...' : 'Save Changes'}
               </button>
@@ -1040,7 +1040,7 @@ const ProfilePageNew = () => {
               <h2 className="text-2xl font-bold text-primary-dark">Add a project</h2>
               <button
                 onClick={() => setShowProjectModal(false)}
-                className="text-slate-500 hover:text-slate-700 text-2xl"
+                className="text-slate-500 hover:text-slate-700 text-2xl font-bold"
               >
                 ✕
               </button>
@@ -1094,7 +1094,7 @@ const ProfilePageNew = () => {
                   />
                   <button
                     onClick={handleAddTechStack}
-                    className="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300"
+                    className="px-4 py-2 bg-slate-300 text-slate-800 font-semibold rounded-lg hover:bg-slate-400 transition-colors"
                   >
                     Add
                   </button>
@@ -1141,14 +1141,14 @@ const ProfilePageNew = () => {
             <div className="sticky bottom-0 bg-white border-t border-slate-200 p-6 flex justify-end gap-4">
               <button
                 onClick={() => setShowProjectModal(false)}
-                className="px-6 py-2 border border-slate-200 rounded-lg hover:bg-slate-50"
+                className="px-6 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 font-semibold"
               >
                 Cancel
               </button>
               <button
                 onClick={handleAddProject}
                 disabled={verifying || !projectForm.title || !projectForm.github_link || !projectForm.description}
-                className="px-6 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 disabled:opacity-50"
+                className="px-6 py-2 bg-primary-teal text-white font-semibold rounded-lg hover:bg-teal-700 disabled:bg-slate-400 disabled:text-slate-700 disabled:cursor-not-allowed"
               >
                 {verifying ? 'Submitting...' : 'Submit and verify'}
               </button>
