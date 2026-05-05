@@ -433,8 +433,9 @@ export default function AddProjectModal({ project: editProject, candidateId, onC
               type="submit"
               disabled={submitting}
               style={{
-                background: submitting ? "#94a3b8" : C.teal,
-                color:"#fff", border:"none",
+                background: submitting ? "#0d6bee" : C.navy,
+                color: C.white,
+                border:"none",
                 borderRadius:6, padding:"9px 24px",
                 fontSize:14, fontWeight:700,
                 cursor: submitting ? "not-allowed" : "pointer",
@@ -446,7 +447,7 @@ export default function AddProjectModal({ project: editProject, candidateId, onC
                 <>
                   <div style={{
                     width:14, height:14, borderRadius:"50%",
-                    border:"2px solid rgba(255,255,255,0.3)",
+                    border:"2px solid rgba(69, 6, 243, 0.3)",
                     borderTopColor:"#fff",
                     animation:"spin 0.8s linear infinite",
                   }} />

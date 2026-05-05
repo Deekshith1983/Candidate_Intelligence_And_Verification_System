@@ -38,10 +38,10 @@ export const InlineSkillEditor = ({
     return (
       <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-primary-dark">Skills</h3>
+          <h3 className="text-xl font-semibold text-blue-600">Skills</h3>
           <button
             onClick={() => setIsEditing(true)}
-            className="px-4 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 text-sm font-semibold"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-semibold transition-colors"
           >
             Edit Skills
           </button>
@@ -97,7 +97,7 @@ export const InlineSkillEditor = ({
   return (
     <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-xl font-semibold text-primary-dark">Edit Skills</h3>
+        <h3 className="text-xl font-semibold text-blue-600">Edit Skills</h3>
         <button
           onClick={handleCancel}
           className="text-slate-500 hover:text-slate-700 text-2xl"
@@ -125,12 +125,12 @@ export const InlineSkillEditor = ({
                   handleAddSkill();
                 }
               }}
-              className="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark"
+              className="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="e.g., React, Node.js, Python"
             />
             <button
               onClick={handleAddSkill}
-              className="px-4 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               Add
             </button>
@@ -188,7 +188,7 @@ export const InlineSkillEditor = ({
         <button
           onClick={handleSave}
           disabled={loading}
-          className="flex-1 px-6 py-3 bg-primary-dark text-white rounded-lg hover:bg-slate-800 disabled:opacity-50 font-semibold"
+          className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 font-semibold transition-colors"
         >
           {loading ? 'Saving...' : 'Save + Re-score'}
         </button>

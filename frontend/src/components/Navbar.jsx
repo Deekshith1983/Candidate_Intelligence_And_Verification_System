@@ -43,7 +43,7 @@ export const Navbar = () => {
 
               <Link
                 to="/register"
-                className="px-6 py-2.5 bg-primary-teal text-white-primary rounded-button font-semibold hover:bg-teal-600 transition text-navbar"
+                className="px-6 py-2.5 bg-teal-500 text-white rounded-button font-semibold hover:bg-teal-600 transition text-navbar"
               >
                 Register
               </Link>
@@ -98,7 +98,7 @@ export const Navbar = () => {
               </Link>
 
               {/* Circular Profile Avatar */}
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary-teal text-white-primary font-semibold text-sm cursor-pointer hover:bg-teal-600 transition flex-shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-teal-500 text-white font-semibold text-sm cursor-pointer hover:bg-teal-600 transition flex-shrink-0">
                 {user?.username?.charAt(0).toUpperCase() || 'U'}
               </div>
 

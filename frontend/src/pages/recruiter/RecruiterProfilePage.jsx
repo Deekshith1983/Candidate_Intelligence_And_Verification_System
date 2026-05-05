@@ -101,8 +101,7 @@ const RecruiterProfilePage = () => {
           {!isEditing && (
             <button
               onClick={() => setIsEditing(true)}
-              className="px-6 py-2 bg-primary-teal text-white font-medium rounded-lg hover:opacity-90 transition-all"
-              style={{ backgroundColor: 'var(--color-primary-teal)', color: 'var(--color-white-primary)' }}
+              className="px-6 py-2 bg-teal-500 text-white font-medium rounded-lg hover:bg-teal-600 transition-colors"
             >
               Edit Profile
             </button>
@@ -140,7 +139,7 @@ const RecruiterProfilePage = () => {
             <div className="space-y-6">
               {/* Company Information */}
               <div>
-                <h2 className="text-lg font-semibold text-primary-dark mb-4">
+                <h2 className="text-lg font-semibold text-blue-600 mb-4">
                   Company Information
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -187,7 +186,7 @@ const RecruiterProfilePage = () => {
                   onChange={handleInputChange}
                   disabled={!isEditing}
                   rows="4"
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark focus:border-transparent transition-all resize-vertical ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-vertical ${
                     !isEditing ? 'bg-slate-50 cursor-not-allowed border-slate-200' : ''
                   }`}
                   placeholder="Tell us more about your company..."
@@ -200,8 +199,7 @@ const RecruiterProfilePage = () => {
                   <button
                     onClick={handleSave}
                     disabled={saving}
-                    className="flex-1 px-6 py-3 bg-primary-teal text-white font-medium rounded-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{ backgroundColor: 'var(--color-primary-teal)', color: 'var(--color-white-primary)' }}
+                    className="flex-1 px-6 py-3 bg-teal-500 text-white font-medium rounded-lg hover:bg-teal-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {saving ? 'Saving...' : 'Save Changes'}
                   </button>

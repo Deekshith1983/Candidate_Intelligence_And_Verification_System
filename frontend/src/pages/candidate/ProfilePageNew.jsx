@@ -462,7 +462,7 @@ const ProfilePageNew = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-dark mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-slate-600">Loading profile...</p>
         </div>
       </div>
@@ -517,7 +517,7 @@ const ProfilePageNew = () => {
               </div>
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <h2 className="text-3xl font-bold text-primary-dark">{authUser?.username}</h2>
+                  <h2 className="text-3xl font-bold text-blue-600">{authUser?.username}</h2>
                   {isGithubVerified ? (
                     <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
                       ✓ Verified
@@ -537,13 +537,13 @@ const ProfilePageNew = () => {
               </div>
             </div>
             <div className="text-right">
-              <div className="text-4xl font-bold text-primary-dark mb-2">
+              <div className="text-4xl font-bold text-blue-600 mb-2">
                 {scoreCard?.total || 0} / 100
               </div>
               {isGithubVerified && (
                 <button
                   onClick={() => setShowEditModal(true)}
-                  className="px-4 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Edit profile
                 </button>
@@ -587,8 +587,8 @@ const ProfilePageNew = () => {
               onClick={() => setActiveTab('details')}
               className={`pb-4 font-semibold border-b-2 transition-colors ${
                 activeTab === 'details'
-                  ? 'border-primary-dark text-primary-dark'
-                  : 'border-transparent text-slate-600 hover:text-primary-dark'
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-slate-600 hover:text-blue-600'
               }`}
             >
               Details + Skills
@@ -598,8 +598,8 @@ const ProfilePageNew = () => {
               disabled={!canAccessRestrictedFeatures}
               className={`pb-4 font-semibold border-b-2 transition-colors ${
                 activeTab === 'resume'
-                  ? 'border-primary-dark text-primary-dark'
-                  : 'border-transparent text-slate-600 hover:text-primary-dark'
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-slate-600 hover:text-blue-600'
               } ${!canAccessRestrictedFeatures ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               Resume + ATS score {!canAccessRestrictedFeatures && '🔒'}
@@ -609,8 +609,8 @@ const ProfilePageNew = () => {
               disabled={!canAccessRestrictedFeatures}
               className={`pb-4 font-semibold border-b-2 transition-colors ${
                 activeTab === 'projects'
-                  ? 'border-primary-dark text-primary-dark'
-                  : 'border-transparent text-slate-600 hover:text-primary-dark'
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-slate-600 hover:text-blue-600'
               } ${!canAccessRestrictedFeatures ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               Projects {!canAccessRestrictedFeatures && '🔒'}
@@ -623,7 +623,7 @@ const ProfilePageNew = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Personal Info */}
             <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-              <h3 className="text-xl font-semibold text-primary-dark mb-6">Personal Info</h3>
+              <h3 className="text-xl font-semibold text-blue-600 mb-6">Personal Info</h3>
               <div className="space-y-4">
                 <div>
                   <p className="text-sm text-slate-600">Degree</p>
@@ -654,7 +654,7 @@ const ProfilePageNew = () => {
 
             {/* Score Breakdown */}
             <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-              <h3 className="text-xl font-semibold text-primary-dark mb-6">Score Breakdown</h3>
+              <h3 className="text-xl font-semibold text-blue-600 mb-6">Score Breakdown</h3>
               <div className="space-y-6">
                 <div>
                   <div className="flex justify-between mb-2">
@@ -699,7 +699,7 @@ const ProfilePageNew = () => {
                   </div>
                 </div>
                 <div className="pt-4 border-t border-slate-200">
-                  <p className="text-lg font-bold text-primary-dark">
+                  <p className="text-lg font-bold text-blue-600">
                     Total: {scoreCard?.total || 0} / 100
                   </p>
                 </div>
@@ -732,7 +732,7 @@ const ProfilePageNew = () => {
                   </p>
                   <button
                     onClick={handleConnectGithub}
-                    className="px-6 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800"
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     Connect GitHub
                   </button>
@@ -780,10 +780,10 @@ const ProfilePageNew = () => {
             ) : (
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-xl font-semibold text-primary-dark">Projects</h3>
+                  <h3 className="text-xl font-semibold text-blue-600">Projects</h3>
                   <button
                     onClick={() => setShowProjectModal(true)}
-                    className="px-4 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 font-semibold"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold transition-colors"
                   >
                     + Add project
                   </button>
@@ -797,13 +797,13 @@ const ProfilePageNew = () => {
                       <div key={project._id} className="bg-slate-50 rounded-lg border border-slate-200 p-6 hover:shadow-md transition">
                         <div className="flex justify-between items-start mb-3">
                           <div className="flex-1">
-                            <h4 className="text-lg font-semibold text-primary-dark">{project.title}</h4>
+                            <h4 className="text-lg font-semibold text-blue-600">{project.title}</h4>
                             <a href={project.github_link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline text-sm">
                               {project.github_link}
                             </a>
                           </div>
                           <div className="text-right">
-                            <div className="text-2xl font-bold text-primary-dark">{project.project_score || 0}</div>
+                            <div className="text-2xl font-bold text-blue-600">{project.project_score || 0}</div>
                             <p className="text-xs text-slate-500">Project Score</p>
                           </div>
                         </div>
@@ -867,7 +867,7 @@ const ProfilePageNew = () => {
           <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="sticky top-0 bg-white border-b border-slate-200 p-6 flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-primary-dark">Edit Profile</h2>
+              <h2 className="text-2xl font-bold text-blue-600">Edit Profile</h2>
               <button
                 onClick={() => setShowEditModal(false)}
                 className="text-slate-500 hover:text-slate-700 text-2xl"
@@ -933,7 +933,7 @@ const ProfilePageNew = () => {
                             education: { ...editForm.education, degree: e.target.value },
                           })
                         }
-                        className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark"
+                        className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                         placeholder="B.Tech Computer Science"
                       />
                     </div>
@@ -1011,7 +1011,7 @@ const ProfilePageNew = () => {
               <button
                 onClick={handleSaveProfile}
                 disabled={verifying}
-                className="px-6 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 disabled:opacity-50"
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
               >
                 {verifying ? 'Saving...' : 'Save Changes'}
               </button>
@@ -1026,7 +1026,7 @@ const ProfilePageNew = () => {
           <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="sticky top-0 bg-white border-b border-slate-200 p-6 flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-primary-dark">Add a project</h2>
+              <h2 className="text-2xl font-bold text-blue-600">Add a project</h2>
               <button
                 onClick={() => setShowProjectModal(false)}
                 className="text-slate-500 hover:text-slate-700 text-2xl"
@@ -1058,7 +1058,7 @@ const ProfilePageNew = () => {
                   type="url"
                   value={projectForm.github_link}
                   onChange={(e) => setProjectForm({ ...projectForm, github_link: e.target.value })}
-                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark"
+                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                   placeholder="https://github.com/username/repo"
                 />
               </div>
@@ -1078,7 +1078,7 @@ const ProfilePageNew = () => {
                         handleAddTechStack();
                       }
                     }}
-                    className="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark"
+                    className="flex-1 px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                     placeholder="e.g., React, Node.js, MongoDB"
                   />
                   <button
@@ -1115,7 +1115,7 @@ const ProfilePageNew = () => {
                 <textarea
                   value={projectForm.description}
                   onChange={(e) => setProjectForm({ ...projectForm, description: e.target.value })}
-                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark"
+                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                   placeholder="Describe your project..."
                   rows={4}
                   maxLength={500}
@@ -1137,7 +1137,7 @@ const ProfilePageNew = () => {
               <button
                 onClick={handleAddProject}
                 disabled={verifying || !projectForm.title || !projectForm.github_link || !projectForm.description}
-                className="px-6 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 disabled:opacity-50"
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
               >
                 {verifying ? 'Submitting...' : 'Submit and verify'}
               </button>

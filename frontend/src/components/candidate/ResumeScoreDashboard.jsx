@@ -8,7 +8,7 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
   if (!resumeScore) {
     return (
       <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-        <h3 className="text-xl font-semibold text-primary-dark mb-6">Resume + ATS Score</h3>
+        <h3 className="text-xl font-semibold text-blue-600 mb-6">Resume + ATS Score</h3>
         <div className="text-center py-8 text-slate-500">
           <p className="text-sm">No resume score available. Upload and submit your resume to see ATS analysis.</p>
         </div>
@@ -54,7 +54,7 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
     <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg overflow-hidden">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-50 to-slate-50 border-b border-slate-200 px-8 py-6">
-        <h3 className="text-xl font-semibold text-primary-dark">Resume + ATS Score</h3>
+        <h3 className="text-xl font-semibold text-blue-600">Resume + ATS Score</h3>
         <p className="text-sm text-slate-600 mt-1">
           Scored on {resumeScore?.meta?.scored_at ? new Date(resumeScore.meta.scored_at).toLocaleDateString() : 'recently'}
         </p>

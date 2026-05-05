@@ -115,10 +115,10 @@ export const InlineResumeEditor = ({
     return (
       <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-primary-dark">Resume</h3>
+          <h3 className="text-xl font-semibold text-blue-600">Resume</h3>
           <button
             onClick={() => setIsEditing(true)}
-            className="px-4 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 text-sm font-semibold"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-semibold transition-colors"
           >
             {resumeUrl ? 'Replace Resume' : 'Upload Resume'}
           </button>
@@ -135,13 +135,13 @@ export const InlineResumeEditor = ({
                   </p>
                 </div>
                 <div className="text-right">
-                  <div className="text-3xl font-bold text-primary-dark">{resumeScore.final_score || 0}</div>
+                  <div className="text-3xl font-bold text-blue-600">{resumeScore.final_score || 0}</div>
                   <p className="text-xs text-slate-500">/100</p>
                 </div>
               </div>
               <a
                 onClick={handleDownloadResume}
-                className="inline-block mt-3 px-4 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 text-sm cursor-pointer"
+                className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm cursor-pointer transition-colors"
               >
                 Download Resume
               </a>
@@ -178,7 +178,7 @@ export const InlineResumeEditor = ({
   return (
     <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-xl font-semibold text-primary-dark">
+        <h3 className="text-xl font-semibold text-blue-600">
           {resumeUrl ? 'Replace Resume' : 'Upload Resume'}
         </h3>
         <button
@@ -245,7 +245,7 @@ export const InlineResumeEditor = ({
             {uploading && (
               <div className="mt-4">
                 <div className="inline-block">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-dark"></div>
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
                 </div>
                 <p className="text-sm text-slate-600 mt-2">Uploading your resume...</p>
               </div>
