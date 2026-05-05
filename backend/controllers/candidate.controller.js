@@ -560,3 +560,93 @@ exports.downloadResume = async (req, res) => {
     }
   }
 };
+
+/**
+ * GENERATE SHARE LINK
+ * Generate a unique shareId for a candidate's public profile
+ * POST /api/candidate/share
+ */
+exports.generateShareLink = async (req, res) => {
+  try {
+    const candidate = await Candidate.findOne({ user_id: req.user.id });
+
+    if (!candidate) {
+      return res.status(404).json({
+        success: false,
+        message: 'Candidate profile not found'
+      });
+    }
+
+    // If shareId already exists, just enable sharing
+    if (candidate.shareId && candidate.sharing_enabled) {
+      return res.json({
+        success: true,
+        message: 'Profile already shared',
+        data: {
+          shareId: candidate.shareId,
+          sharing_enabled: true,
+          shareUrl: `${process.env.CLIENT_URL || 'http://localhost:3000'}/profile/share/${candidate.shareId}`
+        }
+      });
+    }
+
+    // Generate new shareId if needed (using crypto UUID)
+    if (!candidate.shareId) {
+      const crypto = require('crypto');
+      candidate.shareId = crypto.randomBytes(16).toString('hex');
+    }
+
+    // Enable sharing
+    candidate.sharing_enabled = true;
+    await candidate.save();
+
+    res.json({
+      success: true,
+      message: 'Profile share link generated',
+      data: {
+        shareId: candidate.shareId,
+        sharing_enabled: true,
+        shareUrl: `${process.env.CLIENT_URL || 'http://localhost:3000'}/profile/share/${candidate.shareId}`
+      }
+    });
+  } catch (error) {
+    console.error('[Generate Share Link] Error:', error.message);
+    res.status(500).json({
+      success: false,
+      message: 'Error generating share link: ' + error.message
+    });
+  }
+};
+
+/**
+ * GET SHARE STATUS
+ * Get current sharing status and shareId
+ * GET /api/candidate/share
+ */
+exports.getShareStatus = async (req, res) => {
+  try {
+    const candidate = await Candidate.findOne({ user_id: req.user.id });
+
+    if (!candidate) {
+      return res.status(404).json({
+        success: false,
+        message: 'Candidate profile not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      data: {
+        sharing_enabled: candidate.sharing_enabled || false,
+        shareId: candidate.shareId || null,
+        shareUrl: candidate.shareId ? `${process.env.CLIENT_URL || 'http://localhost:3000'}/profile/share/${candidate.shareId}` : null
+      }
+    });
+  } catch (error) {
+    console.error('[Get Share Status] Error:', error.message);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching share status: ' + error.message
+    });
+  }
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext';
 import { Navbar } from './components/Navbar';
 import { PrivateRoute, PublicRoute } from './components/PrivateRoute';
@@ -17,13 +17,23 @@ import StarredCandidatesPage from './pages/recruiter/StarredCandidatesPage';
 import RecruiterProfilePage from './pages/recruiter/RecruiterProfilePage';
 import RecruiterCandidateViewPage from './pages/recruiter/RecruiterCandidateViewPage';
 import NotificationsPage from './pages/NotificationsPage';
+import PublicProfilePage from './pages/PublicProfilePage';
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  // Check if current route is a public profile share (no navbar needed)
+  const isPublicProfileShare = location.pathname.startsWith('/profile/share/');
+
   return (
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <Navbar />
+    <>
+      {/* Only show navbar for non-public routes */}
+      {!isPublicProfileShare && <Navbar />}
 
-      <main className="min-h-[calc(100vh-64px)]" style={{ backgroundColor: 'var(--color-bg-secondary)', color: 'var(--color-text-secondary)' }}>
+      {/* Main content - with padding only for routes that have navbar */}
+      <main 
+        className={isPublicProfileShare ? '' : 'min-h-[calc(100vh-64px)]'} 
+        style={isPublicProfileShare ? {} : { backgroundColor: 'var(--color-bg-secondary)', color: 'var(--color-text-secondary)' }}
+      >
         <Routes>
           {/* Public Routes */}
           <Route
@@ -66,6 +76,12 @@ function App() {
           <Route
             path="/auth/github/callback"
             element={<GitHubCallbackPage />}
+          />
+
+          {/* Public Profile Share Route (No authentication required) */}
+          <Route
+            path="/profile/share/:shareId"
+            element={<PublicProfilePage />}
           />
 
           {/* Protected Routes - Role-Based Dashboard Redirect */}
@@ -165,6 +181,15 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+    </>
+  );
+}
+
+// Main App component wrapper with Router
+function App() {
+  return (
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <AppContent />
     </Router>
   );
 }

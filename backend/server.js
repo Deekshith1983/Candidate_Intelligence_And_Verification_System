@@ -29,6 +29,7 @@ const projectRoutes = require('./routes/project.routes');
 const scoreRoutes = require('./routes/score.routes');
 const notificationRoutes = require('./routes/notification.routes');
 const skillScoreRoutes = require('./routes/skillScoreRoutes');
+const publicRoutes = require('./routes/public.routes');
 
 // Notification socket setup
 const { setSocketInstance } = require('./services/notificationService');
@@ -143,6 +144,9 @@ app.use('/api', notificationRoutes);
 
 // Skill score routes
 app.use('/api', skillScoreRoutes);
+
+// Public routes (No authentication required)
+app.use('/api/public', publicRoutes);
 
 /**
  * ========================================

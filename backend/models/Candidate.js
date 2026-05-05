@@ -68,7 +68,11 @@ const CandidateSchema = new mongoose.Schema({
   last_scored: { type: Date, default: null },
 
   profile_views: { type: Number, default: 0 },
-  profile_stars: { type: Number, default: 0 }
+  profile_stars: { type: Number, default: 0 },
+
+  // ✅ NEW: Unique share ID for public profile link
+  shareId: { type: String, unique: true, sparse: true, default: null },
+  sharing_enabled: { type: Boolean, default: false }
 
 }, { timestamps: true });
 

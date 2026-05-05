@@ -118,7 +118,7 @@ export const InlineResumeEditor = ({
           <h3 className="text-xl font-semibold text-primary-dark">Resume</h3>
           <button
             onClick={() => setIsEditing(true)}
-            className="px-4 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 text-sm font-semibold"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-semibold transition-colors"
           >
             {resumeUrl ? 'Replace Resume' : 'Upload Resume'}
           </button>
@@ -141,7 +141,7 @@ export const InlineResumeEditor = ({
               </div>
               <a
                 onClick={handleDownloadResume}
-                className="inline-block mt-3 px-4 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 text-sm cursor-pointer"
+                className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm cursor-pointer transition-colors"
               >
                 Download Resume
               </a>

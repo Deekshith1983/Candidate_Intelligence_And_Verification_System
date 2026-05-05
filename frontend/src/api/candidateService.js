@@ -160,4 +160,24 @@ export const candidateService = {
       throw error.response?.data || error;
     }
   },
+
+  // POST /api/candidate/share - Generate shareable link
+  generateShareLink: async () => {
+    try {
+      const response = await axiosInstance.post('/api/candidate/share');
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error;
+    }
+  },
+
+  // GET /api/candidate/share - Get share status
+  getShareStatus: async () => {
+    try {
+      const response = await axiosInstance.get('/api/candidate/share');
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error;
+    }
+  },
 };
