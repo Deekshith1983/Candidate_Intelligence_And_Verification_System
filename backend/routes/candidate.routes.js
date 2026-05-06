@@ -16,6 +16,10 @@ router.get('/resume-download', verifyToken, controller.downloadResume);
 
 router.get('/resume-score', verifyToken, controller.getResumeScore);
 
+// ✅ Profile Sharing Routes
+router.post('/share', verifyToken, controller.generateShareLink);
+router.get('/share', verifyToken, controller.getShareStatus);
+
 // ✅ Note: Projects are fetched via /api/projects from project.routes.js
 // This gives candidates immediate access to their own projects
 

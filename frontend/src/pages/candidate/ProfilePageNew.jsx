@@ -29,6 +29,8 @@ const ProfilePageNew = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [skillInput, setSkillInput] = useState('');
   const [resumeUploading, setResumeUploading] = useState(false);
+  const [shareLoading, setShareLoading] = useState(false);
+  const [shareStatus, setShareStatus] = useState(null);
 
   // Edit form state
   const [editForm, setEditForm] = useState({
@@ -451,6 +453,31 @@ const ProfilePageNew = () => {
     });
   };
 
+  /**
+   * Handle Share Profile
+   * Generate or get shareable link and copy to clipboard
+   */
+  const handleShareProfile = async () => {
+    try {
+      setShareLoading(true);
+      const response = await candidateService.generateShareLink();
+      if (response.success) {
+        const shareUrl = response.data.shareUrl;
+        // Copy to clipboard
+        navigator.clipboard.writeText(shareUrl);
+        setSuccessMessage(`✅ Profile link copied to clipboard!\n${shareUrl}`);
+        setShareStatus(response.data);
+        // Clear message after 5 seconds
+        setTimeout(() => setSuccessMessage(''), 5000);
+      }
+    } catch (error) {
+      console.error('Error generating share link:', error);
+      setError(error.message || 'Failed to generate share link');
+    } finally {
+      setShareLoading(false);
+    }
+  };
+
   // Check if GitHub is verified
   const isGithubVerified = authUser?.github_verified && authUser?.github_verification_locked;
   const isVerificationLocked = authUser?.github_verification_locked;
@@ -540,23 +567,23 @@ const ProfilePageNew = () => {
               <div className="text-4xl font-bold text-blue-600 mb-2">
                 {scoreCard?.total || 0} / 100
               </div>
-              {isGithubVerified && (
+              <div className="flex gap-2 justify-end">
                 <button
                   onClick={() => setShowEditModal(true)}
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Edit profile
                 </button>
-              )}
-              {!isGithubVerified && (
-                <button
-                  onClick={() => setShowEditModal(true)}
-                  className="px-4 py-2 bg-slate-300 text-slate-600 rounded-lg cursor-not-allowed"
-                  disabled
-                >
-                  Edit profile
-                </button>
-              )}
+                {isGithubVerified && (
+                  <button
+                    onClick={handleShareProfile}
+                    disabled={shareLoading}
+                    className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 disabled:bg-slate-400 disabled:cursor-not-allowed font-semibold transition-colors"
+                  >
+                    {shareLoading ? 'Sharing...' : '🔗 Share'}
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -573,7 +600,7 @@ const ProfilePageNew = () => {
             <button
               onClick={handleVerifyGithub}
               disabled={verifying}
-              className="ml-4 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+              className="ml-4 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 disabled:bg-slate-400 disabled:cursor-not-allowed whitespace-nowrap"
             >
               {verifying ? 'Verifying...' : 'Verify GitHub'}
             </button>
@@ -709,7 +736,7 @@ const ProfilePageNew = () => {
         )}
 
         {/* Skills Section with Inline Editor */}
-        {activeTab === 'details' && canAccessRestrictedFeatures && (
+        {activeTab === 'details' && (
           <div className="mt-8">
             <InlineSkillEditor
               skills={profile?.skills || []}
@@ -732,6 +759,7 @@ const ProfilePageNew = () => {
                   </p>
                   <button
                     onClick={handleConnectGithub}
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                     className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     Connect GitHub
@@ -808,55 +836,55 @@ const ProfilePageNew = () => {
                           </div>
                         </div>
 
-                        <p className="text-slate-600 text-sm mb-3">{project.description}</p>
+                      <p className="text-slate-600 text-sm mb-3">{project.description}</p>
 
-                        {/* Tech Stack */}
-                        {project.tech_stack && project.tech_stack.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mb-3">
-                            {project.tech_stack.map((tech, idx) => (
-                              <span key={idx} className="px-3 py-1 bg-white border border-slate-300 text-slate-700 rounded-full text-xs font-medium">
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* Project Stats */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4 text-sm">
-                          <div>
-                            <p className="text-slate-500">Total Commits</p>
-                            <p className="font-semibold text-slate-900">{project.total_commits || 0}</p>
-                          </div>
-                          <div>
-                            <p className="text-slate-500">Your Commits</p>
-                            <p className="font-semibold text-slate-900">{project.user_commits || 0}</p>
-                          </div>
-                          <div>
-                            <p className="text-slate-500">Visibility</p>
-                            <p className="font-semibold text-slate-900">{project.is_public ? 'Public' : 'Private'}</p>
-                          </div>
-                          <div>
-                            <p className="text-slate-500">Status</p>
-                            <p className={`font-semibold ${project.verified ? 'text-green-600' : 'text-yellow-600'}`}>
-                              {project.verified ? '✓ Verified' : 'Pending'}
-                            </p>
-                          </div>
+                      {/* Tech Stack */}
+                      {project.tech_stack && project.tech_stack.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          {project.tech_stack.map((tech, idx) => (
+                            <span key={idx} className="px-3 py-1 bg-white border border-slate-300 text-slate-700 rounded-full text-xs font-medium">
+                              {tech}
+                            </span>
+                          ))}
                         </div>
+                      )}
 
-                        {/* Delete Button */}
-                        <button
-                          onClick={() => handleDeleteProject(project._id)}
-                          disabled={verifying}
-                          className="text-red-600 hover:text-red-700 text-sm font-medium disabled:opacity-50"
-                        >
-                          Delete
-                        </button>
+                      {/* Project Stats */}
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4 text-sm">
+                        <div>
+                          <p className="text-slate-500">Total Commits</p>
+                          <p className="font-semibold text-slate-900">{project.total_commits || 0}</p>
+                        </div>
+                        <div>
+                          <p className="text-slate-500">Your Commits</p>
+                          <p className="font-semibold text-slate-900">{project.user_commits || 0}</p>
+                        </div>
+                        <div>
+                          <p className="text-slate-500">Visibility</p>
+                          <p className="font-semibold text-slate-900">{project.is_public ? 'Public' : 'Private'}</p>
+                        </div>
+                        <div>
+                          <p className="text-slate-500">Status</p>
+                          <p className={`font-semibold ${project.verified ? 'text-green-600' : 'text-yellow-600'}`}>
+                            {project.verified ? '✓ Verified' : 'Pending'}
+                          </p>
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+
+                      {/* Delete Button */}
+                      <button
+                        onClick={() => handleDeleteProject(project._id)}
+                        disabled={verifying}
+                        className="text-red-600 hover:text-red-700 text-sm font-medium disabled:text-red-300 disabled:cursor-not-allowed"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            
           </div>
         )}
       </div>
@@ -870,7 +898,7 @@ const ProfilePageNew = () => {
               <h2 className="text-2xl font-bold text-blue-600">Edit Profile</h2>
               <button
                 onClick={() => setShowEditModal(false)}
-                className="text-slate-500 hover:text-slate-700 text-2xl"
+                className="text-slate-500 hover:text-slate-700 text-2xl font-bold"
               >
                 ✕
               </button>
@@ -1004,7 +1032,7 @@ const ProfilePageNew = () => {
             <div className="sticky bottom-0 bg-white border-t border-slate-200 p-6 flex justify-end gap-4">
               <button
                 onClick={() => setShowEditModal(false)}
-                className="px-6 py-2 border border-slate-200 rounded-lg hover:bg-slate-50"
+                className="px-6 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 font-semibold"
               >
                 Cancel
               </button>
@@ -1029,7 +1057,7 @@ const ProfilePageNew = () => {
               <h2 className="text-2xl font-bold text-blue-600">Add a project</h2>
               <button
                 onClick={() => setShowProjectModal(false)}
-                className="text-slate-500 hover:text-slate-700 text-2xl"
+                className="text-slate-500 hover:text-slate-700 text-2xl font-bold"
               >
                 ✕
               </button>
@@ -1083,7 +1111,7 @@ const ProfilePageNew = () => {
                   />
                   <button
                     onClick={handleAddTechStack}
-                    className="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300"
+                    className="px-4 py-2 bg-slate-300 text-slate-800 font-semibold rounded-lg hover:bg-slate-400 transition-colors"
                   >
                     Add
                   </button>
@@ -1130,14 +1158,14 @@ const ProfilePageNew = () => {
             <div className="sticky bottom-0 bg-white border-t border-slate-200 p-6 flex justify-end gap-4">
               <button
                 onClick={() => setShowProjectModal(false)}
-                className="px-6 py-2 border border-slate-200 rounded-lg hover:bg-slate-50"
+                className="px-6 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 font-semibold"
               >
                 Cancel
               </button>
               <button
                 onClick={handleAddProject}
                 disabled={verifying || !projectForm.title || !projectForm.github_link || !projectForm.description}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="px-6 py-2 bg-primary-dark text-white rounded-lg hover:bg-slate-800 disabled:opacity-50"
               >
                 {verifying ? 'Submitting...' : 'Submit and verify'}
               </button>

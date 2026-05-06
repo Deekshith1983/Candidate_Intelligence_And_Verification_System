@@ -215,7 +215,7 @@ export const InlineResumeEditor = ({
             <button
               onClick={handleScoreSubmit}
               disabled={scoring || !profileId}
-              className="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+              className="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-slate-400 disabled:cursor-not-allowed font-semibold"
             >
               {scoring ? 'Submitting...' : 'Submit & Score'}
             </button>
