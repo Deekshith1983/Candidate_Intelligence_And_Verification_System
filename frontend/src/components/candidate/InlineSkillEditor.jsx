@@ -188,11 +188,7 @@ export const InlineSkillEditor = ({
         <button
           onClick={handleSave}
           disabled={loading}
-<<<<<<< HEAD
           className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 font-semibold transition-colors"
-=======
-          className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-slate-400 disabled:cursor-not-allowed font-semibold transition-colors"
->>>>>>> 61eb115b948e1b9e708674a5a44e2943ff5c33ce
         >
           {loading ? 'Saving...' : 'Save + Re-score'}
         </button>
