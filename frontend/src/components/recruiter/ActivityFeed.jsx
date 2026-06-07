@@ -40,21 +40,25 @@ export const ActivityFeed = ({ activities = [], loading = false }) => {
   };
 
   return (
-    <Card className="p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold" style={{ color: 'var(--color-text-primary)' }}>Recent Activity</h3>
-        <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Last 10 actions</span>
+    <Card className="p-4 sm:p-6">
+      <div className="flex items-center justify-between mb-4 sm:mb-6 gap-2">
+        <h3 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--color-text-primary)' }}>
+          Recent Activity
+        </h3>
+        <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+          Last 10
+        </span>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {loading ? (
           <>
             {[...Array(5)].map((_, idx) => (
-              <div key={idx} className="flex gap-3 animate-pulse">
-                <div className="w-10 h-10 rounded-full" style={{ backgroundColor: 'var(--color-bg-tertiary)' }}></div>
-                <div className="flex-1">
-                  <div className="h-4 rounded w-48 mb-2" style={{ backgroundColor: 'var(--color-bg-tertiary)' }}></div>
-                  <div className="h-3 rounded w-24" style={{ backgroundColor: 'var(--color-bg-secondary)' }}></div>
+              <div key={idx} className="flex gap-2 sm:gap-3 animate-pulse">
+                <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-full flex-shrink-0" style={{ backgroundColor: 'var(--color-bg-tertiary)' }}></div>
+                <div className="flex-1 min-w-0">
+                  <div className="h-3 sm:h-4 rounded w-full sm:w-48 mb-1.5 sm:mb-2" style={{ backgroundColor: 'var(--color-bg-tertiary)' }}></div>
+                  <div className="h-2.5 sm:h-3 rounded w-20 sm:w-24" style={{ backgroundColor: 'var(--color-bg-secondary)' }}></div>
                 </div>
               </div>
             ))}
@@ -64,15 +68,17 @@ export const ActivityFeed = ({ activities = [], loading = false }) => {
             const candidateName = activity.candidate?.name || 'Unknown';
             const actionLabel = activity.action === 'viewed' ? 'profile viewed' : 'profile starred';
             return (
-              <div key={idx} className="flex items-start gap-3 pb-4 border-b last:border-0" style={{ borderBottomColor: 'var(--color-border-light)' }}>
+              <div key={idx} className="flex items-start gap-2 sm:gap-3 pb-3 sm:pb-4 border-b last:border-0" style={{ borderBottomColor: 'var(--color-border-light)' }}>
                 <Avatar name={candidateName} size="md" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm" style={{ color: 'var(--color-text-primary)' }}>
-                    <span className="font-semibold">{candidateName}</span>
+                  <p className="text-xs sm:text-sm" style={{ color: 'var(--color-text-primary)' }}>
+                    <span className="font-semibold truncate">{candidateName}</span>
                     {' — '}
-                    <span style={{ color: 'var(--color-text-secondary)' }}>{actionLabel}</span>
+                    <span style={{ color: 'var(--color-text-secondary)' }} className="truncate">
+                      {actionLabel}
+                    </span>
                   </p>
-                  <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
+                  <p className="text-xs mt-0.5 sm:mt-1" style={{ color: 'var(--color-text-muted)' }}>
                     {formatTime(activity.timestamp)}
                   </p>
                 </div>
@@ -80,8 +86,8 @@ export const ActivityFeed = ({ activities = [], loading = false }) => {
             );
           })
         ) : (
-          <div className="text-center py-8" style={{ color: 'var(--color-text-muted)' }}>
-            <p className="text-sm">No recent activity</p>
+          <div className="text-center py-6 sm:py-8" style={{ color: 'var(--color-text-muted)' }}>
+            <p className="text-xs sm:text-sm">No recent activity</p>
           </div>
         )}
       </div>

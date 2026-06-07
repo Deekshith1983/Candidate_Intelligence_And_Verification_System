@@ -3,7 +3,8 @@ import { Card } from '../UI';
 
 /**
  * RecruiterStats Component
- * Displays 4-column grid with key metrics
+ * Displays responsive grid with key metrics
+ * Mobile: 1 column, Tablet: 2 columns, Desktop: 4 columns
  */
 export const RecruiterStats = ({
   profilesViewed = 0,
@@ -40,23 +41,25 @@ export const RecruiterStats = ({
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
       {stats.map((stat, idx) => (
-        <Card key={idx} className="p-4">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-slate-600 text-sm font-medium mb-1">
+        <Card key={idx} className="p-3 sm:p-4">
+          <div className="flex items-start justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <p className="text-slate-600 text-xs sm:text-sm font-medium mb-1">
                 {stat.label}
               </p>
               {loading ? (
-                <div className="h-8 bg-slate-200 rounded animate-pulse w-12"></div>
+                <div className="h-6 sm:h-8 bg-slate-200 rounded animate-pulse w-12"></div>
               ) : (
-                <h3 className={`text-3xl font-bold ${stat.color}`}>
-                  {typeof stat.value === 'number' ? stat.value.toLocaleString() : stat.value}
+                <h3 className={`text-2xl sm:text-3xl font-bold ${stat.color}`}>
+                  {typeof stat.value === 'number'
+                    ? stat.value.toLocaleString()
+                    : stat.value}
                 </h3>
               )}
             </div>
-            <div className="text-3xl">{stat.icon}</div>
+            <div className="text-2xl sm:text-3xl flex-shrink-0">{stat.icon}</div>
           </div>
         </Card>
       ))}

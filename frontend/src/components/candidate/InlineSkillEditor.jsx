@@ -36,12 +36,12 @@ export const InlineSkillEditor = ({
 
   if (!isEditing) {
     return (
-      <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-        <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-blue-600">Skills</h3>
+      <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-4 sm:p-6 md:p-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
+          <h3 className="text-lg sm:text-xl font-semibold text-blue-600">Skills</h3>
           <button
             onClick={() => setIsEditing(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-semibold transition-colors"
+            className="w-full sm:w-auto px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-xs sm:text-sm font-semibold transition-colors flex-shrink-0"
           >
             Edit Skills
           </button>
@@ -49,13 +49,13 @@ export const InlineSkillEditor = ({
 
         {/* Skills Display */}
         {editingSkills && editingSkills.length > 0 ? (
-          <div className="flex flex-wrap gap-3 mb-6">
+          <div className="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
             {editingSkills.map((skill, idx) => (
               <div
                 key={idx}
-                className="px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg"
+                className="px-2 sm:px-4 py-1 sm:py-2 bg-blue-50 border border-blue-200 rounded-lg flex-shrink-0"
               >
-                <p className="font-semibold text-blue-900">
+                <p className="font-semibold text-blue-900 text-xs sm:text-sm break-words">
                   {typeof skill === 'object' ? skill.name : skill}
                 </p>
                 {typeof skill === 'object' && skill.sub_score !== undefined && (
@@ -67,15 +67,15 @@ export const InlineSkillEditor = ({
             ))}
           </div>
         ) : (
-          <p className="text-slate-600 mb-6">No skills added yet. Click "Edit Skills" to add some!</p>
+          <p className="text-slate-600 mb-4 sm:mb-6 text-xs sm:text-sm">No skills added yet. Click "Edit Skills" to add some!</p>
         )}
 
         {/* Skills Score */}
         {scoreCard && (
-          <div className="bg-slate-50 rounded-lg border border-slate-200 p-4">
-            <div className="flex justify-between items-center mb-2">
-              <p className="text-sm font-semibold text-slate-700">Skills Score</p>
-              <p className="text-sm font-semibold text-slate-700">
+          <div className="bg-slate-50 rounded-lg border border-slate-200 p-3 sm:p-4">
+            <div className="flex justify-between items-center gap-2 mb-2 flex-wrap">
+              <p className="text-xs sm:text-sm font-semibold text-slate-700">Skills Score</p>
+              <p className="text-xs sm:text-sm font-semibold text-slate-700 flex-shrink-0">
                 {scoreCard.skills || 0}/40
               </p>
             </div>
@@ -95,9 +95,9 @@ export const InlineSkillEditor = ({
   }
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-      <div className="flex justify-between items-center mb-6">
-        <h3 className="text-xl font-semibold text-blue-600">Edit Skills</h3>
+    <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-4 sm:p-6 md:p-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-blue-600">Edit Skills</h3>
         <button
           onClick={handleCancel}
           className="text-slate-500 hover:text-slate-700 text-2xl"

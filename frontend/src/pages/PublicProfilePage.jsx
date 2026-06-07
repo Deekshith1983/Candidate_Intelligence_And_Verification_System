@@ -98,9 +98,9 @@ const PublicProfilePage = () => {
   if (loading) {
     return (
       <SharedProfileLayout>
-        <div className="max-w-5xl mx-auto px-4">
-          <Card className="p-8 animate-pulse">
-            <div className="space-y-4">
+        <div className="max-w-5xl mx-auto px-3 sm:px-4 lg:px-8">
+          <Card className="p-3 sm:p-4 md:p-6 lg:p-8 animate-pulse">
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
               <div className="h-12 bg-slate-200 rounded w-2/3"></div>
               <div className="h-32 bg-slate-200 rounded"></div>
             </div>
@@ -113,14 +113,14 @@ const PublicProfilePage = () => {
   if (error || !candidate) {
     return (
       <SharedProfileLayout>
-        <div className="max-w-5xl mx-auto px-4">
-          <Card className="p-8">
+        <div className="max-w-5xl mx-auto px-3 sm:px-4 lg:px-8">
+          <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-slate-900 mb-2">Profile Not Found</h2>
-              <p className="text-red-600 mb-6">{error || 'This profile is not available'}</p>
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 mb-2">Profile Not Found</h2>
+              <p className="text-red-600 mb-4 sm:mb-6 text-xs sm:text-sm">{error || 'This profile is not available'}</p>
               <a
                 href="/"
-                className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700"
+                className="inline-block px-2 sm:px-4 py-2 bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-blue-700"
               >
                 ← Back to Home
               </a>
@@ -133,23 +133,22 @@ const PublicProfilePage = () => {
 
   return (
     <SharedProfileLayout>
-      <div className="max-w-5xl mx-auto px-4">
-        
+        <div className="max-w-5xl mx-auto px-3 sm:px-4 lg:px-8">
 
         {/* Header with Profile and Actions */}
-        <Card className="p-8 mb-8">
-          <div className="flex items-start justify-between mb-6">
-            <div className="flex items-start gap-6">
+        <Card className="p-3 sm:p-4 md:p-6 lg:p-8 mb-4 sm:mb-6 md:mb-8">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-3 sm:mb-4 md:mb-6">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-3 md:gap-4 lg:gap-6 flex-1 min-w-0">
               {/* Avatar */}
-              <div className="w-20 h-20 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0">
-                <span className="text-3xl font-bold">{getInitials(candidate.name)}</span>
+              <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-blue-600 text-white flex items-center justify-center">
+                <span className="text-xl sm:text-3xl font-bold">{getInitials(candidate.name)}</span>
               </div>
 
               {/* Profile Info */}
-              <div className="flex-1">
-                <h1 className="text-3xl font-bold text-slate-900 mb-2">{candidate.name}</h1>
-                <p className="text-sm text-slate-600 mb-1">{candidate.user_id?.email || 'No email'}</p>
-                <p className="text-slate-600 mb-3">{candidate.university || 'N/A'}</p>
+              <div className="flex-1 min-w-0">
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2 break-words">{candidate.name}</h1>
+                <p className="text-xs sm:text-sm text-slate-600 mb-1 break-all">{candidate.user_id?.email || 'No email'}</p>
+                <p className="text-slate-600 text-xs sm:text-sm mb-3 break-words">{candidate.university || 'N/A'}</p>
                 
                 {/* ✅ GITHUB LINK - REPLACES BADGES */}
                 {candidate.github_username && (
@@ -157,7 +156,7 @@ const PublicProfilePage = () => {
                     href={`https://github.com/${candidate.github_username}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-blue-600 hover:text-blue-700 mt-3 leading-relaxed font-medium"
+                    className="text-xs sm:text-sm text-blue-600 hover:text-blue-700 mt-2 sm:mt-3 leading-relaxed font-medium break-all inline-block"
                   >
                     https://github.com/{candidate.github_username}
                   </a>
@@ -170,7 +169,7 @@ const PublicProfilePage = () => {
               <button
                 onClick={handleDownloadResume}
                 disabled={downloadingResume}
-                className="px-4 py-2 rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-700 transition-all disabled:opacity-50"
+                className="w-full sm:w-auto px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm bg-blue-600 text-white hover:bg-blue-700 transition-all disabled:opacity-50 flex-shrink-0"
               >
                 {downloadingResume ? '⏳ Downloading...' : '↓ Download resume'}
               </button>
@@ -178,23 +177,23 @@ const PublicProfilePage = () => {
           </div>
 
           {/* Overall Score */}
-          <div className="bg-slate-50 rounded-lg p-4 flex items-center justify-between">
+        <div className="bg-slate-50 rounded-lg p-2 sm:p-3 md:p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 md:gap-3">
             <div>
-              <p className="text-sm text-slate-600 font-medium">Overall Credibility Score</p>
+              <p className="text-xs sm:text-sm text-slate-600 font-medium">Overall Credibility Score</p>
             </div>
-            <div className="text-right">
-              <p className="text-4xl font-bold text-blue-600">{Math.round(candidate.score || 0)}</p>
-              <p className="text-sm text-slate-600">/100</p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-2xl sm:text-4xl font-bold text-blue-600 flex-shrink-0">{Math.round(candidate.score || 0)}</p>
+              <p className="text-xs sm:text-sm text-slate-600 flex-shrink-0">/100</p>
             </div>
           </div>
         </Card>
 
         {/* Tabs */}
-        <div className="border-b border-slate-200 mb-8">
-          <div className="flex gap-8">
+        <div className="border-b border-slate-200 mb-4 sm:mb-6 md:mb-8 overflow-x-auto">
+          <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-6 md:gap-8 flex-nowrap">
             <button
               onClick={() => setActiveTab('details')}
-              className={`px-4 py-3 font-medium border-b-2 transition-colors ${
+              className={`px-2 sm:px-4 py-3 font-medium text-xs sm:text-sm border-b-2 transition-colors whitespace-nowrap flex-shrink-0 ${
                 activeTab === 'details'
                   ? 'text-blue-600 border-blue-600'
                   : 'text-slate-600 border-transparent hover:text-slate-900'
@@ -204,7 +203,7 @@ const PublicProfilePage = () => {
             </button>
             <button
               onClick={() => setActiveTab('resume')}
-              className={`px-4 py-3 font-medium border-b-2 transition-colors ${
+              className={`px-2 sm:px-4 py-3 font-medium text-xs sm:text-sm border-b-2 transition-colors whitespace-nowrap flex-shrink-0 ${
                 activeTab === 'resume'
                   ? 'text-blue-600 border-blue-600'
                   : 'text-slate-600 border-transparent hover:text-slate-900'
@@ -214,7 +213,7 @@ const PublicProfilePage = () => {
             </button>
             <button
               onClick={() => setActiveTab('projects')}
-              className={`px-4 py-3 font-medium border-b-2 transition-colors ${
+              className={`px-2 sm:px-4 py-3 font-medium text-xs sm:text-sm border-b-2 transition-colors whitespace-nowrap flex-shrink-0 ${
                 activeTab === 'projects'
                   ? 'text-blue-600 border-blue-600'
                   : 'text-slate-600 border-transparent hover:text-slate-900'
@@ -227,43 +226,43 @@ const PublicProfilePage = () => {
 
         {/* TAB 1: DETAILS + SKILLS */}
         {activeTab === 'details' && (
-          <div className="space-y-8">
+          <div className="space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
             {/* Two Column Layout: Personal Info + Candidate Bio */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
               {/* Left: Personal Info */}
-              <Card className="p-8">
-                <h3 className="text-lg font-semibold text-slate-900 mb-6">Personal info</h3>
-                <div className="space-y-4">
+              <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-3 sm:mb-4 md:mb-6">Personal info</h3>
+                <div className="space-y-2 sm:space-y-3 md:space-y-4">
                   {candidate.education?.degree && (
                     <div>
-                      <p className="text-sm text-slate-600 font-medium">Degree</p>
-                      <p className="text-slate-900 font-medium mt-1">{candidate.education.degree}</p>
+                      <p className="text-xs sm:text-sm text-slate-600 font-medium">Degree</p>
+                      <p className="text-slate-900 font-medium mt-1 text-sm break-words">{candidate.education.degree}</p>
                     </div>
                   )}
                   {candidate.education?.institution && (
                     <div>
-                      <p className="text-sm text-slate-600 font-medium">Institution</p>
-                      <p className="text-slate-900 font-medium mt-1">{candidate.education.institution}</p>
+                      <p className="text-xs sm:text-sm text-slate-600 font-medium">Institution</p>
+                      <p className="text-slate-900 font-medium mt-1 text-sm break-words">{candidate.education.institution}</p>
                     </div>
                   )}
                   {candidate.education?.graduation_year && (
                     <div>
-                      <p className="text-sm text-slate-600 font-medium">Graduation year</p>
-                      <p className="text-slate-900 font-medium mt-1">{candidate.education.graduation_year || candidate.education.year}</p>
+                      <p className="text-xs sm:text-sm text-slate-600 font-medium">Graduation year</p>
+                      <p className="text-slate-900 font-medium mt-1 text-sm">{candidate.education.graduation_year || candidate.education.year}</p>
                     </div>
                   )}
                   {candidate.github_verified && (
                     <div>
-                      <p className="text-sm text-slate-600 font-medium">GitHub status</p>
-                      <p className="text-green-600 font-medium mt-1">✓ Verified</p>
+                      <p className="text-xs sm:text-sm text-slate-600 font-medium">GitHub status</p>
+                      <p className="text-green-600 font-medium mt-1 text-sm">✓ Verified</p>
                     </div>
                   )}
                 </div>
               </Card>
 
-              <Card className="p-8">
-                <h3 className="text-lg font-semibold text-slate-900 mb-6">About</h3>
-                <p className="text-slate-700 leading-relaxed text-base">
+              <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-3 sm:mb-4 md:mb-6">About</h3>
+                <p className="text-slate-700 leading-relaxed text-xs sm:text-sm break-words">
                   {candidate.bio ? candidate.bio : "No bio available"}
                 </p>
               </Card>
@@ -271,19 +270,19 @@ const PublicProfilePage = () => {
 
             {/* Skills with Sub-scores */}
             {candidate.skills && candidate.skills.length > 0 && (
-              <Card className="p-8">
-                <h3 className="text-lg font-semibold text-slate-900 mb-6">Skills — with sub-scores</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-3 sm:mb-4 md:mb-6">Skills — with sub-scores</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
                   {candidate.skills.slice(0, 6).map((skill, idx) => (
-                    <div key={idx} className="border border-slate-200 rounded-lg p-4">
+                    <div key={idx} className="border border-slate-200 rounded-lg p-3 sm:p-4">
                       {/* Skill Name & Overall Score */}
-                      <div className="flex items-center justify-between mb-4">
-                        <h4 className="font-semibold text-slate-900">{skill.name}</h4>
-                        <span className="text-2xl font-bold text-blue-600">{Math.round(skill.sub_score || 0)}</span>
+                      <div className="flex items-start justify-between gap-2 mb-3 sm:mb-4 flex-wrap">
+                        <h4 className="font-semibold text-slate-900 text-xs sm:text-sm break-words flex-1 min-w-0">{skill.name}</h4>
+                        <span className="text-lg sm:text-2xl font-bold text-blue-600 flex-shrink-0">{Math.round(skill.sub_score || 0)}</span>
                       </div>
 
                       {/* Overall Progress Bar */}
-                      <div className="mb-4">
+                      <div className="mb-3 sm:mb-4">
                         <div className="h-2 bg-slate-200 rounded-full">
                           <div
                             className="h-full bg-blue-600 rounded-full"
@@ -306,18 +305,18 @@ const PublicProfilePage = () => {
 
         {/* TAB 2: RESUME + ATS SCORE */}
         {activeTab === 'resume' && (
-          <div className="space-y-8">
+          <div className="space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
             {candidate.resumeScoreDetails ? (
               <>
                 {/* KPI Analysis Section - 5 Components */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">KPI Analysis</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-3 sm:p-4 md:p-6 lg:p-8">
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-3 sm:mb-4 md:mb-6">KPI Analysis</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
                     {/* ATS Score */}
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-2 sm:p-3 md:p-4 border border-blue-200">
                       <p className="text-xs font-medium text-blue-600 mb-1">ATS Score</p>
-                      <p className="text-3xl font-bold text-blue-900">{Math.round(candidate.resumeScoreDetails.atsScore || 0)}</p>
-                      <p className="text-xs text-blue-700 mt-2">Out of 100</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-blue-900">{Math.round(candidate.resumeScoreDetails.atsScore || 0)}</p>
+                      <p className="text-xs text-blue-700 mt-1 sm:mt-2">Out of 100</p>
                     </div>
 
                     {/* Section Score */}
@@ -351,8 +350,8 @@ const PublicProfilePage = () => {
                 </div>
 
                 {/* Resume Score Contribution */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-                  <div className="bg-slate-50 rounded-lg border border-slate-200 p-4">
+                <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-4 sm:p-6 md:p-8">
+                  <div className="bg-slate-50 rounded-lg border border-slate-200 p-3 sm:p-4">
                     <div className="flex justify-between items-center mb-2">
                       <p className="text-sm font-semibold text-slate-700">Resume Score Contribution</p>
                       <p className="text-sm font-bold text-slate-900">{Math.round(candidate.resumeScoreDetails.resumeContribution || 0)}/30</p>
@@ -370,9 +369,9 @@ const PublicProfilePage = () => {
                 </div>
 
                 {/* ✅ RECRUITER-STYLE VISUALIZATIONS: Donut Chart + Signal Strength */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   {/* Left: ATS Score Breakdown - Donut Chart */}
-                  <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
+                  <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-4 sm:p-6 md:p-8">
                     <h4 className="font-semibold text-slate-900 mb-6">ATS Score Breakdown</h4>
                     <div className="flex justify-center mb-6">
                       {/* Donut Chart */}
@@ -430,7 +429,7 @@ const PublicProfilePage = () => {
                   </div>
 
                   {/* Right: Signal Strength */}
-                  <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
+                  <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-4 sm:p-6 md:p-8">
                     <h4 className="font-semibold text-slate-900 mb-6">Signal Strength</h4>
                     <div className="space-y-4">
                       {/* Section Completeness */}
@@ -507,7 +506,7 @@ const PublicProfilePage = () => {
                 </div>
 
                 {/* ✅ Profile Balance - Radar Chart */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
+                <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-4 sm:p-6 md:p-8">
                   <h4 className="font-semibold text-slate-900 mb-4">Profile Balance (Radar Chart)</h4>
                   <div className="flex justify-center overflow-x-auto">
                     <svg width="380" height="380" viewBox="0 0 380 380" className="mx-auto">
@@ -643,25 +642,25 @@ const PublicProfilePage = () => {
             {candidate.projects && candidate.projects.length > 0 ? (
               <div className="space-y-6">
                 {candidate.projects.map((project, idx) => (
-                  <Card key={idx} className="p-8">
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h4 className="text-xl font-semibold text-slate-900 mb-2">{project.title}</h4>
-                        <p className="text-slate-600 mb-4">{project.description}</p>
+                  <Card key={idx} className="p-4 sm:p-6 md:p-8">
+                    <div className="flex items-start justify-between mb-4 flex-wrap gap-3">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-lg sm:text-xl font-semibold text-slate-900 mb-2 break-words">{project.title}</h4>
+                        <p className="text-slate-600 mb-4 text-sm sm:text-base break-words">{project.description}</p>
                       </div>
                       {project.score && (
-                        <div className="text-right">
-                          <p className="text-3xl font-bold text-blue-600">{Math.round(project.score)}</p>
-                          <p className="text-sm text-slate-600">Score</p>
+                        <div className="text-right flex-shrink-0 ml-2">
+                          <p className="text-2xl sm:text-3xl font-bold text-blue-600">{Math.round(project.score)}</p>
+                          <p className="text-xs sm:text-sm text-slate-600">Score</p>
                         </div>
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                       {/* Technologies */}
                       {project.technologies && project.technologies.length > 0 && (
                         <div>
-                          <p className="text-sm font-medium text-slate-700 mb-2">Technologies</p>
+                          <p className="text-xs sm:text-sm font-medium text-slate-700 mb-2">Technologies</p>
                           <div className="flex flex-wrap gap-2">
                             {project.technologies.map((tech, tidx) => (
                               <span
@@ -677,8 +676,8 @@ const PublicProfilePage = () => {
 
                       {/* Stats */}
                       <div>
-                        <p className="text-sm font-medium text-slate-700 mb-2">Stats</p>
-                        <div className="text-sm text-slate-600 space-y-1">
+                        <p className="text-xs sm:text-sm font-medium text-slate-700 mb-2">Stats</p>
+                        <div className="text-xs sm:text-sm text-slate-600 space-y-1">
                           {project.total_commits > 0 && (
                             <p><strong>Total commits:</strong> {project.total_commits}</p>
                           )}
@@ -698,7 +697,7 @@ const PublicProfilePage = () => {
                             href={project.github_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+                            className="text-blue-600 hover:text-blue-700 font-medium text-xs sm:text-sm"
                           >
                             View on GitHub →
                           </a>

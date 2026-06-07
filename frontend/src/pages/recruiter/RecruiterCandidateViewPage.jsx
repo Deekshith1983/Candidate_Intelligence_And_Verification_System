@@ -113,7 +113,7 @@ const RecruiterCandidateViewPage = () => {
     return (
       <div className="min-h-screen bg-slate-50 py-8">
         <div className="max-w-5xl mx-auto px-4">
-          <Card className="p-8 animate-pulse">
+          <Card className="p-3 sm:p-4 md:p-6 lg:p-8 animate-pulse">
             <div className="space-y-4">
               <div className="h-12 bg-slate-200 rounded w-2/3"></div>
               <div className="h-32 bg-slate-200 rounded"></div>
@@ -164,20 +164,20 @@ const RecruiterCandidateViewPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      <div className="flex-grow py-8">
+      <div className="flex-grow py-3 sm:py-4 md:py-6 lg:py-8">
       <div className="max-w-5xl mx-auto px-4">
         {/* Back Button */}
         <button
           onClick={() => navigate('/recruiter/search')}
-          className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2 mb-6"
+          className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 md:mb-6 text-xs sm:text-sm"
         >
           ← Back to search
         </button>
 
         {/* Header with Profile and Actions */}
-        <Card className="p-8 mb-8">
-          <div className="flex items-start justify-between mb-6">
-            <div className="flex items-start gap-6">
+        <Card className="p-3 sm:p-4 md:p-6 lg:p-8 mb-4 sm:mb-6 md:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-6">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-3 md:gap-4 lg:gap-6">
               {/* Avatar */}
               <div className="w-20 h-20 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0">
                 <span className="text-3xl font-bold">{getInitials(candidate.name)}</span>
@@ -240,8 +240,8 @@ const RecruiterCandidateViewPage = () => {
         </Card>
 
         {/* Tabs */}
-        <div className="border-b border-slate-200 mb-8">
-          <div className="flex gap-8">
+        <div className="border-b border-slate-200 mb-4 sm:mb-6 md:mb-8 overflow-x-auto">
+          <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-8 flex-nowrap">
             <button
               onClick={() => setActiveTab('details')}
               className={`px-4 py-3 font-medium border-b-2 transition-colors ${
@@ -281,8 +281,8 @@ const RecruiterCandidateViewPage = () => {
             {/* Two Column Layout: Personal Info + Score Breakdown */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left: Personal Info */}
-              <Card className="p-8">
-                <h3 className="text-lg font-semibold text-slate-900 mb-6">Personal info</h3>
+              <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-3 sm:mb-4 md:mb-6">Personal info</h3>
                 <div className="space-y-4">
                   {candidate.education?.degree && (
                     <div>
@@ -313,9 +313,9 @@ const RecruiterCandidateViewPage = () => {
 
               {/* Right: Score Breakdown */}
               {candidate.scoreBreakdown && (
-                <Card className="p-8">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-6">Score breakdown</h3>
-                  <div className="space-y-6">
+                <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-3 sm:mb-4 md:mb-6">Score breakdown</h3>
+                  <div className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6">
                     {/* Skills */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
@@ -381,8 +381,8 @@ const RecruiterCandidateViewPage = () => {
 
             {/* Skills with Sub-scores */}
             {candidate.skills && candidate.skills.length > 0 && (
-              <Card className="p-8">
-                <h3 className="text-lg font-semibold text-slate-900 mb-6">Skills — with sub-scores</h3>
+              <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-3 sm:mb-4 md:mb-6">Skills — with sub-scores</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {candidate.skills.slice(0, 6).map((skill, idx) => (
                     <div key={idx} className="border border-slate-200 rounded-lg p-4">
@@ -772,13 +772,13 @@ const RecruiterCandidateViewPage = () => {
             {candidate.projects && candidate.projects.length > 0 ? (
               <div className="space-y-6">
                 {candidate.projects.map((project, idx) => (
-                  <Card key={idx} className="p-8">
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex-1">
+                  <Card key={idx} className="p-4 sm:p-6 md:p-8">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4 sm:gap-6 mb-6">
+                      <div className="flex-1 min-w-0">
                         {/* Project Header */}
-                        <div className="flex items-center gap-3 mb-3">
-                          <h3 className="text-lg font-semibold text-slate-900">{project.title}</h3>
-                          <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
+                          <h3 className="text-base sm:text-lg font-semibold text-slate-900 break-words">{project.title}</h3>
+                          <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold flex-shrink-0">
                             ✓ GitHub Verified
                           </span>
                         </div>
@@ -789,22 +789,22 @@ const RecruiterCandidateViewPage = () => {
                             href={project.github_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline text-sm mb-3 block truncate"
+                            className="text-blue-600 hover:underline text-xs sm:text-sm mb-3 block break-all"
                           >
                             {project.github_url}
                           </a>
                         )}
 
                         {/* Description */}
-                        <p className="text-slate-600 mb-4 text-sm">{project.description}</p>
+                        <p className="text-slate-600 mb-4 text-xs sm:text-sm break-words">{project.description}</p>
 
                         {/* Technologies */}
                         {project.technologies && project.technologies.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mb-6">
+                          <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                             {project.technologies.map((tech, tidx) => (
                               <span
                                 key={tidx}
-                                className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"
+                                className="px-2 sm:px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"
                               >
                                 {tech}
                               </span>
@@ -813,37 +813,37 @@ const RecruiterCandidateViewPage = () => {
                         )}
 
                         {/* Metrics Grid */}
-                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                          <div className="border-l-4 border-blue-500 pl-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
+                          <div className="border-l-4 border-blue-500 pl-3 sm:pl-4">
                             <p className="text-xs text-slate-600 font-medium">Total Commits</p>
-                            <p className="text-lg font-bold text-slate-900 mt-1">{project.total_commits || 0}</p>
+                            <p className="text-base sm:text-lg font-bold text-slate-900 mt-1">{project.total_commits || 0}</p>
                           </div>
-                          <div className="border-l-4 border-blue-500 pl-4">
+                          <div className="border-l-4 border-blue-500 pl-3 sm:pl-4">
                             <p className="text-xs text-slate-600 font-medium">His Commits</p>
-                            <p className="text-lg font-bold text-slate-900 mt-1">{project.your_commits || 0}</p>
+                            <p className="text-base sm:text-lg font-bold text-slate-900 mt-1">{project.your_commits || 0}</p>
                           </div>
-                          <div className="border-l-4 border-slate-400 pl-4">
+                          <div className="border-l-4 border-slate-400 pl-3 sm:pl-4">
                             <p className="text-xs text-slate-600 font-medium">Visibility</p>
-                            <p className="text-lg font-bold text-slate-900 mt-1">{project.visibility}</p>
+                            <p className="text-base sm:text-lg font-bold text-slate-900 mt-1">{project.visibility}</p>
                           </div>
-                          <div className={`border-l-4 pl-4 ${project.has_readme ? 'border-green-500' : 'border-red-500'}`}>
+                          <div className={`border-l-4 pl-3 sm:pl-4 ${project.has_readme ? 'border-green-500' : 'border-red-500'}`}>
                             <p className="text-xs text-slate-600 font-medium">README</p>
-                            <p className={`text-lg font-bold mt-1 ${project.has_readme ? 'text-green-600' : 'text-red-600'}`}>
+                            <p className={`text-base sm:text-lg font-bold mt-1 ${project.has_readme ? 'text-green-600' : 'text-red-600'}`}>
                               {project.has_readme ? 'Yes' : 'No'}
                             </p>
                           </div>
-                          <div className="border-l-4 border-slate-400 pl-4">
+                          <div className="border-l-4 border-slate-400 pl-3 sm:pl-4">
                             <p className="text-xs text-slate-600 font-medium">Last Push</p>
-                            <p className="text-lg font-bold text-slate-900 mt-1">{project.last_push}</p>
+                            <p className="text-base sm:text-lg font-bold text-slate-900 mt-1 break-words">{project.last_push}</p>
                           </div>
                         </div>
                       </div>
 
                       {/* Project Score */}
-                      <div className="ml-4 flex-shrink-0">
-                        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 text-center">
+                      <div className="flex-shrink-0 w-full sm:w-auto">
+                        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 sm:p-6 text-center">
                           <p className="text-xs text-blue-600 font-medium uppercase mb-2">Score</p>
-                          <p className="text-4xl font-bold text-blue-600">{project.score}</p>
+                          <p className="text-3xl sm:text-4xl font-bold text-blue-600">{project.score}</p>
                         </div>
                       </div>
                     </div>
@@ -851,12 +851,12 @@ const RecruiterCandidateViewPage = () => {
                     {/* Score Breakdown (if available) */}
                     {project.score_breakdown && Object.keys(project.score_breakdown).length > 0 && (
                       <div className="border-t border-slate-200 pt-4">
-                        <p className="text-sm font-semibold text-slate-700 mb-3">Score Breakdown</p>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <p className="text-xs sm:text-sm font-semibold text-slate-700 mb-3">Score Breakdown</p>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                           {Object.entries(project.score_breakdown).map(([key, value]) => (
-                            <div key={key} className="bg-slate-50 rounded p-3">
+                            <div key={key} className="bg-slate-50 rounded p-2 sm:p-3">
                               <p className="text-xs text-slate-600 capitalize">{key.replace(/_/g, ' ')}</p>
-                              <p className="text-lg font-bold text-slate-900 mt-1">{Math.round(value || 0)}</p>
+                              <p className="text-base sm:text-lg font-bold text-slate-900 mt-1">{Math.round(value || 0)}</p>
                             </div>
                           ))}
                         </div>

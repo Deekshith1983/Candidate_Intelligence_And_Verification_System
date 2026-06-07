@@ -471,29 +471,29 @@ const ProfilePageNew = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <div className="flex-grow py-8">
+      <div className="flex-grow py-4 sm:py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Success/Error Messages */}
         {successMessage && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
+          <div className="mb-3 sm:mb-4 md:mb-6 p-3 sm:p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-xs sm:text-sm">
             {successMessage}
           </div>
         )}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+          <div className="mb-3 sm:mb-4 md:mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-xs sm:text-sm">
             {error}
           </div>
         )}
 
         {/* GitHub Connection Alert */}
         {!isGithubVerified && (
-          <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-6 flex justify-between items-center">
+          <div className="mb-3 sm:mb-4 md:mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-3 sm:p-4 md:p-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4">
             <div>
-              <h3 className="font-semibold text-yellow-900">
+              <h3 className="font-semibold text-yellow-900 text-xs sm:text-sm md:text-base">
                 Connect your GitHub account to unlock Resume ATS scoring and Project verification
               </h3>
-              <p className="text-sm text-yellow-800 mt-2">
+              <p className="text-xs sm:text-sm text-yellow-800 mt-2">
                 {isVerificationLocked
                   ? 'Complete the verification below'
                   : 'Start by connecting your GitHub account'}
@@ -501,7 +501,7 @@ const ProfilePageNew = () => {
             </div>
             <button
               onClick={handleConnectGithub}
-              className="ml-4 px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 whitespace-nowrap"
+              className="px-2 sm:px-3 md:px-4 py-2 md:py-3 bg-yellow-500 text-white text-xs sm:text-sm font-semibold rounded-lg hover:bg-yellow-600 whitespace-nowrap flex-shrink-0"
             >
               Connect GitHub
             </button>
@@ -509,41 +509,56 @@ const ProfilePageNew = () => {
         )}
 
         {/* Profile Header Card */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8 mb-8">
-          <div className="flex justify-between items-start">
-            <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                {authUser?.username?.charAt(0) || 'U'}
-              </div>
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <h2 className="text-3xl font-bold text-blue-600">{authUser?.username}</h2>
-                  {isGithubVerified ? (
-                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
-                      ✓ Verified
-                    </span>
-                  ) : (
-                    <span className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold">
-                      Not Verified
-                    </span>
-                  )}
+        <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-3 sm:p-4 md:p-6 lg:p-8 mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+          <div className="profile-header-card">
+            {/* Left Section: Avatar + Info */}
+            <div className="profile-header-left w-full md:flex-1">
+              <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-3 md:gap-4 lg:gap-6">
+                {/* Avatar */}
+                <div className="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-blue-500 rounded-full flex items-center justify-center text-white text-lg sm:text-xl md:text-2xl font-bold">
+                  {authUser?.username?.charAt(0) || 'U'}
                 </div>
-                <p className="text-slate-600">
-                  {authUser?.email}
-                </p>
-                <p className="text-slate-500 text-sm mt-1">
-                  {profile?.education?.degree || 'No degree'} • {profile?.education?.institution || 'No institution'}
-                </p>
+                
+                {/* User Info */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 md:gap-3 mb-2 sm:mb-2 md:mb-3 flex-wrap">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-600 break-words">{authUser?.username}</h2>
+                    {isGithubVerified ? (
+                      <span className="verified-badge px-2 sm:px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs sm:text-sm font-semibold flex-shrink-0">
+                        ✓ Verified
+                      </span>
+                    ) : (
+                      <span className="verified-badge px-2 sm:px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs sm:text-sm font-semibold flex-shrink-0">
+                        Not Verified
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-slate-600 text-xs break-all mb-1">
+                    {authUser?.email}
+                  </p>
+                  <p className="text-slate-500 text-xs">
+                    <span className="break-words">{profile?.education?.degree || 'No degree'}</span>
+                    {' • '}
+                    <span className="break-words">{profile?.education?.institution || 'No institution'}</span>
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="text-right">
-              <div className="text-4xl font-bold text-blue-600 mb-2">
-                {scoreCard?.total || 0} / 100
+            
+            {/* Right Section: Score + Button */}
+            <div className="profile-header-right w-full md:w-auto md:text-right mt-2 sm:mt-3 md:mt-0 flex flex-col md:items-end">
+              <div className="score-container mb-2 sm:mb-3 md:mb-4">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 flex-shrink-0">
+                  {scoreCard?.total || 0}
+                </div>
+                <div className="text-xs sm:text-sm text-slate-600 ml-2 md:ml-0 md:ml-2 flex-shrink-0">
+                  / 100
+                </div>
               </div>
               {isGithubVerified && (
                 <button
                   onClick={() => setShowEditModal(true)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="w-full md:w-auto px-3 sm:px-4 py-2 bg-blue-600 text-white text-xs sm:text-sm rounded-lg hover:bg-blue-700 transition-colors flex-shrink-0"
                 >
                   Edit profile
                 </button>
@@ -551,7 +566,7 @@ const ProfilePageNew = () => {
               {!isGithubVerified && (
                 <button
                   onClick={() => setShowEditModal(true)}
-                  className="px-4 py-2 bg-slate-300 text-slate-600 rounded-lg cursor-not-allowed"
+                  className="w-full md:w-auto px-3 sm:px-4 py-2 bg-slate-300 text-slate-600 text-xs sm:text-sm rounded-lg cursor-not-allowed flex-shrink-0"
                   disabled
                 >
                   Edit profile
@@ -563,17 +578,17 @@ const ProfilePageNew = () => {
 
         {/* Verification Button - Show after GitHub OAuth but before verification */}
         {authUser?.github_verified && !authUser?.github_verification_locked && (
-          <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-6 flex justify-between items-center">
+          <div className="mb-3 sm:mb-4 md:mb-6 bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 md:p-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-4">
             <div>
-              <h3 className="font-semibold text-blue-900">Complete GitHub Verification</h3>
-              <p className="text-sm text-blue-800 mt-2">
+              <h3 className="font-semibold text-blue-900 text-xs sm:text-sm md:text-base">Complete GitHub Verification</h3>
+              <p className="text-xs sm:text-sm text-blue-800 mt-2">
                 Click the button below to verify your GitHub connection and unlock all features
               </p>
             </div>
             <button
               onClick={handleVerifyGithub}
               disabled={verifying}
-              className="ml-4 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+              className="px-2 sm:px-3 md:px-4 py-2 md:py-3 bg-blue-500 text-white text-xs sm:text-sm font-semibold rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap flex-shrink-0"
             >
               {verifying ? 'Verifying...' : 'Verify GitHub'}
             </button>
@@ -581,8 +596,8 @@ const ProfilePageNew = () => {
         )}
 
         {/* Tabs */}
-        <div className="border-b border-slate-200 mb-8">
-          <div className="flex gap-8">
+        <div className="border-b border-slate-200 mb-4 sm:mb-6 md:mb-8 overflow-x-auto">
+          <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-6 whitespace-nowrap">
             <button
               onClick={() => setActiveTab('details')}
               className={`pb-4 font-semibold border-b-2 transition-colors ${
@@ -620,32 +635,32 @@ const ProfilePageNew = () => {
 
         {/* Tab Content */}
         {activeTab === 'details' && (
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
             {/* Personal Info */}
-            <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-              <h3 className="text-xl font-semibold text-blue-600 mb-6">Personal Info</h3>
-              <div className="space-y-4">
+            <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-3 sm:p-4 md:p-6 lg:p-8">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-blue-600 mb-3 sm:mb-4 md:mb-6">Personal Info</h3>
+              <div className="space-y-2 sm:space-y-3 md:space-y-4">
                 <div>
-                  <p className="text-sm text-slate-600">Degree</p>
-                  <p className="font-semibold text-slate-900">
+                  <p className="text-xs sm:text-sm text-slate-600">Degree</p>
+                  <p className="font-semibold text-slate-900 break-words text-sm sm:text-base">
                     {profile?.education?.degree || 'Not provided'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-600">Institution</p>
-                  <p className="font-semibold text-slate-900">
+                  <p className="text-xs sm:text-sm text-slate-600">Institution</p>
+                  <p className="font-semibold text-slate-900 break-words text-sm sm:text-base">
                     {profile?.education?.institution || 'Not provided'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-600">Graduation Year</p>
-                  <p className="font-semibold text-slate-900">
+                  <p className="text-xs sm:text-sm text-slate-600">Graduation Year</p>
+                  <p className="font-semibold text-slate-900 text-sm sm:text-base">
                     {profile?.education?.year || 'Not provided'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-600">GitHub Status</p>
-                  <p className="font-semibold text-slate-900">
+                  <p className="text-xs sm:text-sm text-slate-600">GitHub Status</p>
+                  <p className="font-semibold text-slate-900 text-sm sm:text-base">
                     {isGithubVerified ? '✓ Connected & Verified' : 'Not connected'}
                   </p>
                 </div>
@@ -653,13 +668,13 @@ const ProfilePageNew = () => {
             </div>
 
             {/* Score Breakdown */}
-            <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-              <h3 className="text-xl font-semibold text-blue-600 mb-6">Score Breakdown</h3>
-              <div className="space-y-6">
+            <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-3 sm:p-4 md:p-6 lg:p-8">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-blue-600 mb-3 sm:mb-4 md:mb-6">Score Breakdown</h3>
+              <div className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6">
                 <div>
-                  <div className="flex justify-between mb-2">
-                    <p className="text-sm font-semibold text-slate-700">Skills</p>
-                    <p className="text-sm font-semibold text-slate-700">
+                  <div className="flex justify-between mb-2 gap-2 flex-wrap">
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700">Skills</p>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700 flex-shrink-0">
                       {scoreCard?.skills || 0}/40
                     </p>
                   </div>
@@ -671,9 +686,9 @@ const ProfilePageNew = () => {
                   </div>
                 </div>
                 <div>
-                  <div className="flex justify-between mb-2">
-                    <p className="text-sm font-semibold text-slate-700">Resume</p>
-                    <p className="text-sm font-semibold text-slate-700">
+                  <div className="flex justify-between mb-2 gap-2 flex-wrap">
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700">Resume</p>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700 flex-shrink-0">
                       {Math.min(scoreCard?.resume || 0, 30)}/30
                     </p>
                   </div>
@@ -685,9 +700,9 @@ const ProfilePageNew = () => {
                   </div>
                 </div>
                 <div>
-                  <div className="flex justify-between mb-2">
-                    <p className="text-sm font-semibold text-slate-700">Projects</p>
-                    <p className="text-sm font-semibold text-slate-700">
+                  <div className="flex justify-between mb-2 gap-2 flex-wrap">
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700">Projects</p>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700 flex-shrink-0">
                       {scoreCard?.projects || 0}/30
                     </p>
                   </div>
@@ -698,10 +713,16 @@ const ProfilePageNew = () => {
                     ></div>
                   </div>
                 </div>
-                <div className="pt-4 border-t border-slate-200">
-                  <p className="text-lg font-bold text-blue-600">
-                    Total: {scoreCard?.total || 0} / 100
-                  </p>
+                <div className="pt-3 sm:pt-4 border-t border-slate-200">
+                  <div className="score-container flex flex-wrap items-baseline gap-2">
+                    <p className="text-base sm:text-lg font-bold text-blue-600 flex-shrink-0">Total:</p>
+                    <p className="text-base sm:text-lg font-bold text-blue-600 flex-shrink-0">
+                      {scoreCard?.total || 0}
+                    </p>
+                    <p className="text-xs sm:text-sm text-slate-600 flex-shrink-0">
+                      / 100
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -710,7 +731,7 @@ const ProfilePageNew = () => {
 
         {/* Skills Section with Inline Editor */}
         {activeTab === 'details' && canAccessRestrictedFeatures && (
-          <div className="mt-8">
+          <div className="mt-4 sm:mt-6 md:mt-8">
             <InlineSkillEditor
               skills={profile?.skills || []}
               scoreCard={scoreCard}
@@ -723,10 +744,10 @@ const ProfilePageNew = () => {
         {activeTab === 'resume' && (
           <div>
             {!canAccessRestrictedFeatures ? (
-              <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-                <div className="text-center py-12">
-                  <div className="text-4xl mb-4">🔒</div>
-                  <h3 className="text-xl font-semibold text-slate-900 mb-2">Feature Locked</h3>
+              <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-3 sm:p-4 md:p-6 lg:p-8">
+                <div className="text-center py-6 sm:py-8 md:py-12">
+                  <div className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 md:mb-6">🔒</div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Feature Locked</h3>
                   <p className="text-slate-600 mb-6">
                     Please complete GitHub verification to access Resume features
                   </p>
@@ -795,20 +816,20 @@ const ProfilePageNew = () => {
                   <div className="space-y-4">
                     {projects.map((project) => (
                       <div key={project._id} className="bg-slate-50 rounded-lg border border-slate-200 p-6 hover:shadow-md transition">
-                        <div className="flex justify-between items-start mb-3">
-                          <div className="flex-1">
-                            <h4 className="text-lg font-semibold text-blue-600">{project.title}</h4>
-                            <a href={project.github_link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline text-sm">
-                              {project.github_link}
-                            </a>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-2xl font-bold text-blue-600">{project.project_score || 0}</div>
+<div className="project-card flex-col md:flex-row gap-3 md:gap-4">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-base sm:text-lg font-semibold text-blue-600 break-words">{project.title}</h4>
+                      <a href={project.github_link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline text-xs sm:text-sm break-all">
+                        {project.github_link}
+                      </a>
+                    </div>
+                    <div className="project-score text-left md:text-right flex-shrink-0">
+                      <div className="text-xl sm:text-2xl font-bold text-blue-600 flex-shrink-0">{project.project_score || 0}</div>
                             <p className="text-xs text-slate-500">Project Score</p>
                           </div>
                         </div>
 
-                        <p className="text-slate-600 text-sm mb-3">{project.description}</p>
+                        <p className="text-slate-600 text-xs sm:text-sm mb-3 break-words">{project.description}</p>
 
                         {/* Tech Stack */}
                         {project.tech_stack && project.tech_stack.length > 0 && (
@@ -822,21 +843,21 @@ const ProfilePageNew = () => {
                         )}
 
                         {/* Project Stats */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4 text-sm">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-4 text-xs sm:text-sm">
                           <div>
-                            <p className="text-slate-500">Total Commits</p>
+                            <p className="text-slate-500 text-xs">Total Commits</p>
                             <p className="font-semibold text-slate-900">{project.total_commits || 0}</p>
                           </div>
                           <div>
-                            <p className="text-slate-500">Your Commits</p>
+                            <p className="text-slate-500 text-xs">Your Commits</p>
                             <p className="font-semibold text-slate-900">{project.user_commits || 0}</p>
                           </div>
                           <div>
-                            <p className="text-slate-500">Visibility</p>
-                            <p className="font-semibold text-slate-900">{project.is_public ? 'Public' : 'Private'}</p>
+                            <p className="text-slate-500 text-xs">Visibility</p>
+                            <p className="font-semibold text-slate-900 break-words">{project.is_public ? 'Public' : 'Private'}</p>
                           </div>
                           <div>
-                            <p className="text-slate-500">Status</p>
+                            <p className="text-slate-500 text-xs">Status</p>
                             <p className={`font-semibold ${project.verified ? 'text-green-600' : 'text-yellow-600'}`}>
                               {project.verified ? '✓ Verified' : 'Pending'}
                             </p>

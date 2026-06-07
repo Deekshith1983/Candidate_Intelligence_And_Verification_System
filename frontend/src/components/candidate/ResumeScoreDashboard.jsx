@@ -7,10 +7,10 @@ import React from 'react';
 export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) => {
   if (!resumeScore) {
     return (
-      <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-        <h3 className="text-xl font-semibold text-blue-600 mb-6">Resume + ATS Score</h3>
-        <div className="text-center py-8 text-slate-500">
-          <p className="text-sm">No resume score available. Upload and submit your resume to see ATS analysis.</p>
+      <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-4 sm:p-6 md:p-8">
+        <h3 className="text-lg sm:text-xl font-semibold text-blue-600 mb-4 sm:mb-6">Resume + ATS Score</h3>
+        <div className="text-center py-6 sm:py-8 text-slate-500">
+          <p className="text-xs sm:text-sm">No resume score available. Upload and submit your resume to see ATS analysis.</p>
         </div>
       </div>
     );
@@ -53,50 +53,50 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
   return (
     <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-50 to-slate-50 border-b border-slate-200 px-8 py-6">
-        <h3 className="text-xl font-semibold text-blue-600">Resume + ATS Score</h3>
-        <p className="text-sm text-slate-600 mt-1">
+      <div className="bg-gradient-to-r from-blue-50 to-slate-50 border-b border-slate-200 px-4 sm:px-6 md:px-8 py-4 sm:py-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-blue-600 break-words">Resume + ATS Score</h3>
+        <p className="text-xs sm:text-sm text-slate-600 mt-1">
           Scored on {resumeScore?.meta?.scored_at ? new Date(resumeScore.meta.scored_at).toLocaleDateString() : 'recently'}
         </p>
       </div>
 
-      <div className="p-8">
+      <div className="p-4 sm:p-6 md:p-8">
         {/* KPI Analysis Section - 5 Components */}
-        <div className="mb-8">
-          <h4 className="font-semibold text-slate-900 mb-4">KPI Analysis</h4>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="mb-6 sm:mb-8">
+          <h4 className="font-semibold text-slate-900 mb-3 sm:mb-4 text-sm sm:text-base">KPI Analysis</h4>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
             {/* ATS Score */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 sm:p-4 border border-blue-200 overflow-hidden">
               <p className="text-xs font-medium text-blue-600 mb-1">ATS Score</p>
-              <p className="text-3xl font-bold text-blue-900">{atsScore}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-blue-900 break-words">{atsScore}</p>
               <p className="text-xs text-blue-700 mt-2">Out of 100</p>
             </div>
 
             {/* Section Score */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 sm:p-4 border border-green-200 overflow-hidden">
               <p className="text-xs font-medium text-green-600 mb-1">Section Score</p>
-              <p className="text-3xl font-bold text-green-900">{sectionScore}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-green-900 break-words">{sectionScore}</p>
               <p className="text-xs text-green-700 mt-2">/100</p>
             </div>
 
             {/* Keyword Score */}
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 sm:p-4 border border-purple-200 overflow-hidden">
               <p className="text-xs font-medium text-purple-600 mb-1">Keyword Score</p>
-              <p className="text-3xl font-bold text-purple-900">{keywordScore}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-purple-900 break-words">{keywordScore}</p>
               <p className="text-xs text-purple-700 mt-2">/100</p>
             </div>
 
             {/* Format Score */}
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 sm:p-4 border border-orange-200 overflow-hidden">
               <p className="text-xs font-medium text-orange-600 mb-1">Format Score</p>
-              <p className="text-3xl font-bold text-orange-900">{formatScore}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-orange-900 break-words">{formatScore}</p>
               <p className="text-xs text-orange-700 mt-2">/100</p>
             </div>
 
             {/* Skill Score */}
-            <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg p-4 border border-cyan-200">
+            <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg p-3 sm:p-4 border border-cyan-200 overflow-hidden">
               <p className="text-xs font-medium text-cyan-600 mb-1">Skill Score</p>
-              <p className="text-3xl font-bold text-cyan-900">{skillScore}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-cyan-900 break-words">{skillScore}</p>
               <p className="text-xs text-cyan-700 mt-2">/100</p>
             </div>
           </div>
@@ -104,14 +104,14 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
 
         {/* Profile Balance Score */}
         {scoreCard && (
-          <div className="mb-8 bg-slate-50 rounded-lg border border-slate-200 p-4">
-            <div className="flex justify-between items-center mb-2">
-              <p className="text-sm font-semibold text-slate-700">Resume Score Contribution</p>
-              <p className="text-sm font-bold text-slate-900">{Math.round(resumeScorePercentage)}/30</p>
+          <div className="mb-6 sm:mb-8 bg-slate-50 rounded-lg border border-slate-200 p-3 sm:p-4">
+            <div className="flex justify-between items-center gap-2 mb-2 flex-wrap">
+              <p className="text-xs sm:text-sm font-semibold text-slate-700">Resume Score Contribution</p>
+              <p className="text-xs sm:text-sm font-bold text-slate-900 flex-shrink-0">{Math.round(resumeScorePercentage)}/30</p>
             </div>
-            <div className="w-full bg-slate-200 rounded-full h-3">
+            <div className="w-full bg-slate-200 rounded-full h-2 sm:h-3">
               <div
-                className="bg-gradient-to-r from-green-400 to-green-600 h-3 rounded-full transition-all"
+                className="bg-gradient-to-r from-green-400 to-green-600 h-full rounded-full transition-all"
                 style={{ width: `${(resumeScorePercentage / 30) * 100}%` }}
               ></div>
             </div>
@@ -122,13 +122,13 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
         )}
 
         {/* Main Grid - ATS Breakdown, Signal Strength */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {/* Left Column - ATS Score Breakdown Donut Chart */}
-          <div className="bg-slate-50 rounded-lg border border-slate-200 p-6">
-            <h4 className="font-semibold text-slate-900 mb-4">ATS Score Breakdown</h4>
-            <div className="flex justify-center mb-6">
+          <div className="bg-slate-50 rounded-lg border border-slate-200 p-4 sm:p-6 overflow-hidden min-w-0">
+            <h4 className="font-semibold text-slate-900 mb-3 sm:mb-4 text-sm sm:text-base">ATS Score Breakdown</h4>
+            <div className="flex justify-center mb-4 sm:mb-6">
               {/* Donut Chart */}
-              <div className="relative w-40 h-40">
+              <div className="relative w-32 sm:w-40 h-32 sm:h-40 flex-shrink-0">
                 <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                   {/* Background circle */}
                   <circle
@@ -182,18 +182,18 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
           </div>
 
           {/* Right Column - Signal Strength */}
-          <div className="bg-slate-50 rounded-lg border border-slate-200 p-6">
-            <h4 className="font-semibold text-slate-900 mb-4">Signal Strength</h4>
-            <div className="space-y-4">
+          <div className="bg-slate-50 rounded-lg border border-slate-200 p-3 sm:p-4 md:p-6 overflow-hidden">
+            <h4 className="font-semibold text-slate-900 mb-3 sm:mb-4 text-sm sm:text-base">Signal Strength</h4>
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
               {/* ✅ FIXED: Use backend KPI scores directly */}
               <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm font-medium text-slate-700">Section Completeness</span>
-                  <span className="text-sm font-semibold text-slate-900">{sectionScore}%</span>
+                <div className="flex justify-between gap-1 mb-1 sm:mb-2">
+                  <span className="text-xs sm:text-sm font-medium text-slate-700 min-w-0">Section Completeness</span>
+                  <span className="text-xs sm:text-sm font-semibold text-slate-900 flex-shrink-0">{sectionScore}%</span>
                 </div>
-                <div className="w-full bg-slate-300 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-slate-300 rounded-full h-2 sm:h-2.5 overflow-hidden">
                   <div
-                    className={`h-2 rounded-full transition-all ${getSignalColor(sectionScore)}`}
+                    className={`h-full rounded-full transition-all ${getSignalColor(sectionScore)}`}
                     style={{ width: `${Math.min(sectionScore, 100)}%` }}
                   ></div>
                 </div>
@@ -201,13 +201,13 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
               </div>
 
               <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm font-medium text-slate-700">Keyword Density</span>
-                  <span className="text-sm font-semibold text-slate-900">{keywordScore}%</span>
+                <div className="flex justify-between gap-1 mb-1 sm:mb-2">
+                  <span className="text-xs sm:text-sm font-medium text-slate-700 min-w-0">Keyword Density</span>
+                  <span className="text-xs sm:text-sm font-semibold text-slate-900 flex-shrink-0">{keywordScore}%</span>
                 </div>
-                <div className="w-full bg-slate-300 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-slate-300 rounded-full h-2 sm:h-2.5 overflow-hidden">
                   <div
-                    className={`h-2 rounded-full transition-all ${getSignalColor(keywordScore)}`}
+                    className={`h-full rounded-full transition-all ${getSignalColor(keywordScore)}`}
                     style={{ width: `${Math.min(keywordScore, 100)}%` }}
                   ></div>
                 </div>
@@ -215,13 +215,13 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
               </div>
 
               <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm font-medium text-slate-700">Format Quality</span>
-                  <span className="text-sm font-semibold text-slate-900">{formatScore}%</span>
+                <div className="flex justify-between gap-1 mb-1 sm:mb-2">
+                  <span className="text-xs sm:text-sm font-medium text-slate-700 min-w-0">Format Quality</span>
+                  <span className="text-xs sm:text-sm font-semibold text-slate-900 flex-shrink-0">{formatScore}%</span>
                 </div>
-                <div className="w-full bg-slate-300 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-slate-300 rounded-full h-2 sm:h-2.5 overflow-hidden">
                   <div
-                    className={`h-2 rounded-full transition-all ${getSignalColor(formatScore)}`}
+                    className={`h-full rounded-full transition-all ${getSignalColor(formatScore)}`}
                     style={{ width: `${Math.min(formatScore, 100)}%` }}
                   ></div>
                 </div>
@@ -229,13 +229,13 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
               </div>
 
               <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm font-medium text-slate-700">Skill Depth</span>
-                  <span className="text-sm font-semibold text-slate-900">{skillScore}%</span>
+                <div className="flex justify-between gap-1 mb-1 sm:mb-2">
+                  <span className="text-xs sm:text-sm font-medium text-slate-700 min-w-0">Skill Depth</span>
+                  <span className="text-xs sm:text-sm font-semibold text-slate-900 flex-shrink-0">{skillScore}%</span>
                 </div>
-                <div className="w-full bg-slate-300 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-slate-300 rounded-full h-2 sm:h-2.5 overflow-hidden">
                   <div
-                    className={`h-2 rounded-full transition-all ${getSignalColor(skillScore)}`}
+                    className={`h-full rounded-full transition-all ${getSignalColor(skillScore)}`}
                     style={{ width: `${Math.min(skillScore, 100)}%` }}
                   ></div>
                 </div>
@@ -243,13 +243,13 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
               </div>
 
               <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm font-medium text-slate-700">Project Strength</span>
-                  <span className="text-sm font-semibold text-slate-900">{projectStrength}%</span>
+                <div className="flex justify-between gap-1 mb-1 sm:mb-2">
+                  <span className="text-xs sm:text-sm font-medium text-slate-700 min-w-0">Project Strength</span>
+                  <span className="text-xs sm:text-sm font-semibold text-slate-900 flex-shrink-0">{projectStrength}%</span>
                 </div>
-                <div className="w-full bg-slate-300 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-slate-300 rounded-full h-2 sm:h-2.5 overflow-hidden">
                   <div
-                    className={`h-2 rounded-full transition-all ${getSignalColor(projectStrength)}`}
+                    className={`h-full rounded-full transition-all ${getSignalColor(projectStrength)}`}
                     style={{ width: `${Math.min(projectStrength, 100)}%` }}
                   ></div>
                 </div>
@@ -260,10 +260,10 @@ export const ResumeScoreDashboard = ({ resumeScore = null, scoreCard = null }) =
         </div>
 
         {/* Profile Balance - Radar Chart */}
-        <div className="bg-slate-50 rounded-lg border border-slate-200 p-6 mb-8">
-          <h4 className="font-semibold text-slate-900 mb-4">Profile Balance (Radar Chart)</h4>
+        <div className="bg-slate-50 rounded-lg border border-slate-200 p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 md:mb-8 overflow-hidden">
+          <h4 className="font-semibold text-slate-900 mb-3 sm:mb-4 text-sm sm:text-base break-words">Profile Balance (Radar Chart)</h4>
           <div className="flex justify-center overflow-x-auto">
-            <svg width="380" height="380" viewBox="0 0 380 380" className="mx-auto">
+            <svg width="280" height="280" viewBox="0 0 380 380" className="mx-auto md:w-full md:h-auto" style={{ minWidth: '280px' }}>
               {/* Grid lines */}
               {[1, 2, 3, 4, 5].map((level) => {
                 const angleSlice = (Math.PI * 2) / radarData.length;

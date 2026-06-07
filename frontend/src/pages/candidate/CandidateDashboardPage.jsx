@@ -154,19 +154,19 @@ export default function CandidateDashboardPage() {
         onDismiss={removeNotification}
       />
 
-      <div className="flex-grow py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex-grow py-3 sm:py-4 md:py-6 lg:py-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">Welcome back, {profile?.user_id?.username || 'Candidate'}!</h1>
-          <p className="text-slate-600 mt-2">Here's your profile overview and activity</p>
+        <div className="mb-4 sm:mb-6 md:mb-8">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900">Welcome back, {profile?.user_id?.username || 'Candidate'}!</h1>
+          <p className="text-xs text-slate-600 mt-1">Here's your profile overview and activity</p>
         </div>
 
         {/* Main Stats Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-4 sm:mb-6 md:mb-8">
           {/* Credibility Score Circle */}
-          <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-6 flex flex-col items-center justify-center">
-            <div className="relative w-32 h-32 mb-4">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center">
+            <div className="relative w-24 sm:w-28 md:w-32 h-24 sm:h-28 md:h-32 mb-2 sm:mb-4">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                 {/* Background circle */}
                 <path
@@ -193,21 +193,21 @@ export default function CandidateDashboardPage() {
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <p className="text-3xl font-bold text-slate-900">{scoreCard?.total || 0}</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900">{scoreCard?.total || 0}</p>
                 </div>
               </div>
             </div>
-            <p className="text-sm text-slate-600 font-semibold">Credibility score</p>
-            <span className={`inline-block mt-3 px-3 py-1 rounded-full text-xs font-semibold ${tier.color}`}>
+            <p className="text-xs sm:text-sm text-slate-600 font-semibold">Credibility score</p>
+            <span className={`inline-block mt-2 sm:mt-3 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-semibold ${tier.color}`}>
               {tier.label}
             </span>
           </div>
 
           {/* Skills Score */}
-          <div className="bg-blue-50 rounded-xl border border-blue-200 shadow-soft-lg p-6">
-            <p className="text-sm font-semibold text-blue-600 mb-2">Skills</p>
-            <p className="text-4xl font-bold text-blue-600 mb-4">
-              {scoreCard?.skills || 0}<span className="text-lg text-blue-500">/40</span>
+          <div className="bg-blue-50 rounded-xl border border-blue-200 shadow-soft-lg p-3 sm:p-4 md:p-6">
+            <p className="text-xs font-semibold text-blue-600 mb-1 sm:mb-2">Skills</p>
+            <p className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 mb-2 sm:mb-3 md:mb-4">
+              {scoreCard?.skills || 0}<span className="text-xs sm:text-lg text-blue-500">/40</span>
             </p>
             <div className="w-full bg-blue-200 rounded-full h-2">
               <div
@@ -218,10 +218,10 @@ export default function CandidateDashboardPage() {
           </div>
 
           {/* Resume Score */}
-          <div className="bg-green-50 rounded-xl border border-green-200 shadow-soft-lg p-6">
-            <p className="text-sm font-semibold text-green-600 mb-2">Resume</p>
-            <p className="text-4xl font-bold text-green-600 mb-4">
-              {scoreCard?.resume || 0}<span className="text-lg text-green-500">/30</span>
+          <div className="bg-green-50 rounded-xl border border-green-200 shadow-soft-lg p-3 sm:p-4 md:p-6">
+            <p className="text-xs font-semibold text-green-600 mb-1 sm:mb-2">Resume</p>
+            <p className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-green-600 mb-2 sm:mb-3 md:mb-4">
+              {scoreCard?.resume || 0}<span className="text-xs sm:text-lg text-green-500">/30</span>
             </p>
             <div className="w-full bg-green-200 rounded-full h-2">
               <div
@@ -232,22 +232,22 @@ export default function CandidateDashboardPage() {
           </div>
 
           {/* Projects Score */}
-          <div className="bg-purple-50 rounded-xl border border-purple-200 shadow-soft-lg p-6">
-            <p className="text-sm font-semibold text-purple-600 mb-2">Projects</p>
-            <p className="text-4xl font-bold text-purple-600 mb-2">
-              {scoreCard?.projects || 0}<span className="text-lg text-purple-500">/30</span>
+          <div className="bg-purple-50 rounded-xl border border-purple-200 shadow-soft-lg p-3 sm:p-4 md:p-6">
+            <p className="text-xs font-semibold text-purple-600 mb-1 sm:mb-2">Projects</p>
+            <p className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-purple-600 mb-1 sm:mb-2">
+              {scoreCard?.projects || 0}<span className="text-xs sm:text-lg text-purple-500">/30</span>
             </p>
             <p className="text-xs text-slate-600 font-semibold">
-              Verified projects <span className="font-bold text-purple-600">{activity.verifiedProjects}</span>
+              Verified: <span className="font-bold text-purple-600">{activity.verifiedProjects}</span>
             </p>
           </div>
         </div>
 
         {/* Score Breakdown + Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
           {/* Score Breakdown */}
-          <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-6">
-            <h3 className="text-lg font-semibold text-slate-900 mb-6">Score breakdown</h3>
+          <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-3 sm:p-4 md:p-6 lg:p-8">
+            <h3 className="text-base sm:text-lg md:text-xl font-semibold text-slate-900 mb-3 sm:mb-4 md:mb-6">Score breakdown</h3>
             
             <div className="space-y-6">
               {/* Skills Bar */}

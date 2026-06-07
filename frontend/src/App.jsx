@@ -29,9 +29,9 @@ function AppContent() {
       {/* Only show navbar for non-public routes */}
       {!isPublicProfileShare && <Navbar />}
 
-      {/* Main content - with padding only for routes that have navbar */}
+      {/* Main content - responsive height accounting for navbar */}
       <main 
-        className={isPublicProfileShare ? '' : 'min-h-[calc(100vh-64px)]'} 
+        className={isPublicProfileShare ? 'min-h-screen' : 'min-h-screen pt-16 sm:pt-20'} 
         style={isPublicProfileShare ? {} : { backgroundColor: 'var(--color-bg-secondary)', color: 'var(--color-text-secondary)' }}
       >
         <Routes>

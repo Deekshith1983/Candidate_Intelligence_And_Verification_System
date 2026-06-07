@@ -113,9 +113,9 @@ export const InlineResumeEditor = ({
 
   if (!isEditing) {
     return (
-      <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-        <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-blue-600">Resume</h3>
+      <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-3 sm:p-4 md:p-6 lg:p-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-6">
+          <h3 className="text-lg sm:text-xl font-semibold text-blue-600 break-words">Resume</h3>
           <button
             onClick={() => setIsEditing(true)}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-semibold transition-colors"
@@ -126,22 +126,22 @@ export const InlineResumeEditor = ({
 
         {resumeUrl && resumeScore ? (
           <div>
-            <div className="bg-blue-50 rounded-lg border border-blue-200 p-4 mb-6">
-              <div className="flex justify-between items-start">
+            <div className="bg-blue-50 rounded-lg border border-blue-200 p-3 sm:p-4 md:p-5 mb-3 sm:mb-4 md:mb-6">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-3">
                 <div>
-                  <p className="font-semibold text-slate-900">Current Resume</p>
-                  <p className="text-sm text-slate-600 mt-1">
+                  <p className="font-semibold text-slate-900 text-sm sm:text-base">Current Resume</p>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1">
                     Uploaded {resumeScore?.meta?.scored_at ? new Date(resumeScore.meta.scored_at).toLocaleDateString() : 'recently'}
                   </p>
                 </div>
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-blue-600">{resumeScore.final_score || 0}</div>
+                <div className="text-right flex-shrink-0">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600">{resumeScore.final_score || 0}</div>
                   <p className="text-xs text-slate-500">/100</p>
                 </div>
               </div>
               <a
                 onClick={handleDownloadResume}
-                className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm cursor-pointer transition-colors"
+                className="inline-block mt-2 sm:mt-3 px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-xs sm:text-sm cursor-pointer transition-colors"
               >
                 Download Resume
               </a>
@@ -149,16 +149,16 @@ export const InlineResumeEditor = ({
 
             {/* Resume Score */}
             {scoreCard && (
-              <div className="bg-slate-50 rounded-lg border border-slate-200 p-4">
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-sm font-semibold text-slate-700">Resume Score</p>
-                  <p className="text-sm font-semibold text-slate-700">
+              <div className="bg-slate-50 rounded-lg border border-slate-200 p-3 sm:p-4">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2 mb-2">
+                  <p className="text-xs sm:text-sm font-semibold text-slate-700">Resume Score</p>
+                  <p className="text-xs sm:text-sm font-semibold text-slate-700">
                     {Math.min(scoreCard.resume || 0, 30)}/30
                   </p>
                 </div>
-                <div className="w-full bg-slate-200 rounded-full h-2">
+                <div className="w-full bg-slate-200 rounded-full h-2 sm:h-2.5">
                   <div
-                    className="bg-green-500 h-2 rounded-full"
+                    className="bg-green-500 h-full rounded-full"
                     style={{ width: `${Math.min((scoreCard.resume || 0), 30) / 30 * 100}%` }}
                   ></div>
                 </div>
@@ -166,8 +166,8 @@ export const InlineResumeEditor = ({
             )}
           </div>
         ) : (
-          <div className="text-center py-8 text-slate-500">
-            <p className="text-sm">No resume uploaded yet. Click the button above to upload!</p>
+          <div className="text-center py-6 sm:py-8 text-slate-500">
+            <p className="text-xs sm:text-sm">No resume uploaded yet. Click the button above to upload!</p>
           </div>
         )}
       </div>
@@ -176,9 +176,9 @@ export const InlineResumeEditor = ({
 
   // Upload in progress or completed
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-8">
-      <div className="flex justify-between items-center mb-6">
-        <h3 className="text-xl font-semibold text-blue-600">
+    <div className="bg-white rounded-xl border border-slate-200 shadow-soft-lg p-3 sm:p-4 md:p-6 lg:p-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-blue-600 break-words">
           {resumeUrl ? 'Replace Resume' : 'Upload Resume'}
         </h3>
         <button
@@ -186,28 +186,28 @@ export const InlineResumeEditor = ({
             setIsEditing(false);
             setUploadSuccess(false);
           }}
-          className="text-slate-500 hover:text-slate-700 text-2xl"
+          className="text-slate-500 hover:text-slate-700 text-xl sm:text-2xl flex-shrink-0"
         >
           ✕
         </button>
       </div>
 
       {uploadSuccess ? (
-        <div className="py-12 text-center">
-          <div className="text-5xl mb-4">✅</div>
-          <p className="font-semibold text-slate-900 mb-2">Resume uploaded successfully!</p>
-          <p className="text-sm text-slate-600 mb-6">File: {uploadedFileName}</p>
-          <p className="text-xs text-slate-500 mb-6">
+        <div className="py-8 sm:py-12 text-center">
+          <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">✅</div>
+          <p className="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Resume uploaded successfully!</p>
+          <p className="text-xs sm:text-sm text-slate-600 mb-4 sm:mb-6 break-all">File: {uploadedFileName}</p>
+          <p className="text-xs text-slate-500 mb-4 sm:mb-6">
             Click the Submit button below to score your resume with our ATS engine.
           </p>
-          <div className="flex gap-3 pt-6 border-t border-slate-200">
+          <div className="flex gap-2 sm:gap-3 pt-4 sm:pt-6 border-t border-slate-200">
             <button
               onClick={() => {
                 setIsEditing(false);
                 setUploadSuccess(false);
                 setSelectedFile(null);
               }}
-              className="flex-1 px-6 py-3 border border-slate-200 rounded-lg hover:bg-slate-50 font-semibold"
+              className="flex-1 px-3 sm:px-6 py-2 sm:py-3 border border-slate-200 rounded-lg hover:bg-slate-50 font-semibold text-xs sm:text-sm"
               disabled={scoring}
             >
               Cancel
@@ -215,24 +215,24 @@ export const InlineResumeEditor = ({
             <button
               onClick={handleScoreSubmit}
               disabled={scoring || !profileId}
-              className="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-slate-400 disabled:cursor-not-allowed font-semibold"
+              className="flex-1 px-3 sm:px-6 py-2 sm:py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-slate-400 disabled:cursor-not-allowed font-semibold text-xs sm:text-sm"
             >
               {scoring ? 'Submitting...' : 'Submit & Score'}
             </button>
           </div>
         </div>
       ) : (
-        <div className="space-y-4">
-          <p className="text-sm text-slate-600">
+        <div className="space-y-3 sm:space-y-4">
+          <p className="text-xs sm:text-sm text-slate-600">
             Upload your latest resume in PDF or DOCX format. It will be automatically scanned for ATS scoring.
           </p>
 
-          <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center">
-            <div className="text-4xl mb-4">📄</div>
-            <p className="font-semibold text-slate-900 mb-2">
+          <div className="border-2 border-dashed border-slate-300 rounded-lg p-4 sm:p-6 md:p-8 text-center">
+            <div className="text-3xl sm:text-4xl mb-2 sm:mb-4">📄</div>
+            <p className="font-semibold text-slate-900 mb-2 text-xs sm:text-sm">
               {resumeUrl ? 'Choose a new resume' : 'Upload your resume'}
             </p>
-            <p className="text-sm text-slate-600 mb-4">
+            <p className="text-xs sm:text-sm text-slate-600 mb-3 sm:mb-4">
               Supported formats: PDF, DOCX. Max file size: 10MB.
             </p>
             <input
@@ -243,20 +243,20 @@ export const InlineResumeEditor = ({
               className="mx-auto"
             />
             {uploading && (
-              <div className="mt-4">
+              <div className="mt-2 sm:mt-4">
                 <div className="inline-block">
                   <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
                 </div>
-                <p className="text-sm text-slate-600 mt-2">Uploading your resume...</p>
+                <p className="text-xs sm:text-sm text-slate-600 mt-2">Uploading your resume...</p>
               </div>
             )}
-            <p className="text-xs text-slate-500 mt-4">
+            <p className="text-xs text-slate-500 mt-2 sm:mt-4">
               After upload, click Submit to score your resume with ATS analysis.
             </p>
           </div>
 
           {resumeScore && (
-            <div className="bg-slate-50 rounded-lg border border-slate-200 p-4">
+            <div className="bg-slate-50 rounded-lg border border-slate-200 p-3 sm:p-4">
               <p className="text-xs text-slate-500">
                 Current resume score: {resumeScore.final_score || 0}/100
               </p>

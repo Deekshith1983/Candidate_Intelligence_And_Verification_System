@@ -25,20 +25,20 @@ export const QuickLinks = () => {
   ];
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2 sm:space-y-3">
       {quickLinks.map((link, idx) => (
         <Link key={idx} to={link.to}>
           <div 
-            className="p-4 rounded-lg cursor-pointer transition-all duration-200 border border-transparent"
+            className="p-3 sm:p-4 rounded-lg cursor-pointer transition-all duration-200 border border-transparent hover:shadow-soft"
             style={{
               backgroundColor: 'var(--color-bg-primary)',
               color: 'var(--color-text-primary)',
               borderColor: 'var(--color-border-light)'
             }}
           >
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <h4 className="font-semibold text-sm mb-1" style={{ color: 'var(--color-text-primary)' }}>
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex-1 min-w-0">
+                <h4 className="font-semibold text-xs sm:text-sm mb-0.5 sm:mb-1" style={{ color: 'var(--color-text-primary)' }}>
                   {link.label} →
                 </h4>
                 <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
